@@ -6,15 +6,14 @@ import {
   Mail,
   MapPin,
   Phone,
-  Scale,
-  ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
 import { CtaBanner } from "@/components/cta-banner";
+import { HeroLogo } from "@/components/hero-logo";
 import { InquiryForm } from "@/components/inquiry-form";
 import { PracticeIcon } from "@/components/practice-icon";
-import { ButtonLink, Container, Eyebrow } from "@/components/ui";
-import { attorneys, firm, firmStats, heroStats, practiceAreas } from "@/lib/site";
+import { Container, Eyebrow } from "@/components/ui";
+import { attorneys, firm, firmStats, practiceAreas } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "FGDLaw | Established 2002",
@@ -24,79 +23,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <section className="relative z-0 overflow-hidden bg-navy-deep text-white">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_42%,rgba(200,162,38,0.12),transparent_28%)]" />
-        <Container className="relative grid items-center gap-12 py-16 lg:grid-cols-[1.15fr_0.85fr] lg:py-24">
-          <div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-gold/35 px-3 py-1 text-[11px] font-semibold tracking-[0.18em] text-gold uppercase">
-              <Scale className="h-3.5 w-3.5" aria-hidden="true" />
-              Trusted counsel since 2002
-            </p>
-            <h1 className="mt-7 max-w-xl font-serif text-[2.7rem] leading-[1.12] md:text-6xl">
-              Just and equitable legal counsel,{" "}
-              <em className="text-gold">built on integrity.</em>
-            </h1>
-            <p className="mt-6 max-w-xl text-[15px] leading-7 text-white/72">
-              {firm.description}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <ButtonLink href="/contact">
-                Schedule a Consultation
-                <ArrowRight className="h-4 w-4" />
-              </ButtonLink>
-              <ButtonLink href="/practice-areas" variant="outline-light">
-                View Practice Areas
-              </ButtonLink>
-            </div>
-            <div className="mt-14 grid grid-cols-2 gap-8 border-t border-white/10 pt-8 sm:grid-cols-4">
-              {heroStats.map((stat) => (
-                <div key={stat.label}>
-                  <p className="font-serif text-3xl text-white/90">{stat.value}</p>
-                  <p className="mt-1 max-w-[8rem] text-xs leading-4 text-white/50">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="relative mx-auto w-full max-w-md">
-            <div className="relative mx-auto grid h-72 w-72 place-items-center md:h-80 md:w-80">
-              <div className="absolute inset-0 rounded-full border border-dashed border-gold/45" />
-              <div className="absolute inset-8 flex flex-col items-center justify-center rounded-full bg-[#0c2344] shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
-                <ShieldCheck className="h-10 w-10 text-gold" aria-hidden="true" />
-                <p className="mt-3 font-serif text-lg text-gold">FGDLaw</p>
-                <p className="mt-1 text-[10px] tracking-[0.22em] text-white/55 uppercase">
-                  Est. 2002
-                </p>
-              </div>
-            </div>
-            <div className="relative z-10 mx-auto -mt-6 w-[min(100%,20rem)] rounded-2xl bg-white p-4 text-navy shadow-[0_18px_40px_rgba(0,0,0,0.18)]">
-              <div className="flex items-start gap-3 rounded-lg px-1 py-2">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-cream text-gold">
-                  <PracticeIcon name="building" className="h-4 w-4" />
-                </span>
-                <span>
-                  <span className="block text-sm font-semibold">
-                    Corporate & Labor Law
-                  </span>
-                  <span className="text-xs text-muted">Primary practice focus</span>
-                </span>
-              </div>
-              <div className="flex items-start gap-3 rounded-lg px-1 py-2">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-cream text-gold">
-                  <PracticeIcon name="shield" className="h-4 w-4" />
-                </span>
-                <span>
-                  <span className="block text-sm font-semibold">
-                    Data Privacy Compliance
-                  </span>
-                  <span className="text-xs text-muted">Certified DPO on staff</span>
-                </span>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <HeroLogo />
 
       <section className="bg-cream py-20 md:py-24">
         <Container>

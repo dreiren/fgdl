@@ -9,6 +9,7 @@
   --ink: #142033;
   --muted: #5a6573;
   --quote: #f3ead4;
+  --logo: #ebeff2;
 }
 
 @theme inline {
@@ -20,6 +21,7 @@
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-quote: var(--quote);
+  --color-logo: var(--logo);
   --font-sans: var(--font-source);
   --font-serif: var(--font-playfair);
 }
