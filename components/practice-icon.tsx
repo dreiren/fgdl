@@ -1,28 +1,33 @@
 import {
-  Activity,
   Building2,
+  GraduationCap,
+  HardHat,
   Heart,
+  Lightbulb,
+  Lock,
   Shield,
-  Star,
   User,
+  Users,
   type LucideIcon,
 } from "lucide-react";
-import type { PracticeArea } from "@/lib/site";
 
-const icons: Record<PracticeArea["icon"], LucideIcon> = {
+const icons = {
+  lightbulb: Lightbulb,
   building: Building2,
+  hardhat: HardHat,
   shield: Shield,
   heart: Heart,
-  star: Star,
-  activity: Activity,
+  graduation: GraduationCap,
+  lock: Lock,
+  users: Users,
   user: User,
-};
+} satisfies Record<string, LucideIcon>;
 
 export function PracticeIcon({
   name,
   className,
 }: {
-  name: PracticeArea["icon"];
+  name: keyof typeof icons;
   className?: string;
 }) {
   const Icon = icons[name];

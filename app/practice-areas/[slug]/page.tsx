@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CtaBanner } from "@/components/cta-banner";
 import { PageHero } from "@/components/page-hero";
-import { PracticeIcon } from "@/components/practice-icon";
 import { ButtonLink, Container } from "@/components/ui";
 import { getPracticeArea, practiceAreas } from "@/lib/site";
 
@@ -38,10 +38,29 @@ export default async function PracticeAreaPage({
       <section className="bg-cream py-16 md:py-20">
         <Container className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
-            <span className="grid h-12 w-12 place-items-center rounded-lg bg-white text-navy/70 shadow-sm">
-              <PracticeIcon name={area.icon} className="h-6 w-6" />
-            </span>
-            <ul className="mt-8 space-y-4 text-[15px] leading-7 text-ink/85">
+            <div className="relative mb-8 aspect-[4/3] max-w-md overflow-hidden rounded-[4px] shadow-[0_8px_24px_rgba(8,21,38,0.08)]">
+              <Image
+                src={area.image}
+                alt=""
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 448px"
+                quality={90}
+                priority
+                unoptimized
+              />
+            </div>
+            {area.topics.length > 0 ? (
+              <p className="text-sm text-gold">
+                {area.topics.map((topic, index) => (
+                  <span key={topic}>
+                    {index > 0 ? <span aria-hidden="true"> • </span> : null}
+                    {topic}
+                  </span>
+                ))}
+              </p>
+            ) : null}
+            <ul className="mt-6 space-y-4 text-[15px] leading-7 text-ink/85">
               {area.details.map((item) => (
                 <li key={item}>{item}</li>
               ))}

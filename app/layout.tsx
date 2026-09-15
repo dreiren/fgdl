@@ -32,6 +32,8 @@ export const metadata: Metadata = {
     "labor law Philippines",
     "data privacy",
     "corporate counsel",
+    "intellectual property",
+    "education law",
   ],
   openGraph: {
     title: "FGDLaw | Established 2002",
