@@ -9,9 +9,10 @@ const firmLinks = [
 ] as const;
 
 const practiceLinks = [
-  { href: "/practice-areas/corporate-labor", label: "Corporate & Labor" },
-  { href: "/practice-areas/data-privacy", label: "Data Privacy" },
-  { href: "/practice-areas/litigation-criminal", label: "Litigation" },
+  { href: "/practice-areas/intellectual-property", label: "Intellectual Property" },
+  { href: "/practice-areas/corporate-commercial", label: "Corporate & Commercial" },
+  { href: "/practice-areas/labor-employment", label: "Labor & Employment" },
+  { href: "/practice-areas", label: "All practice areas" },
 ] as const;
 
 export function SiteFooter() {

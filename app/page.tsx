@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  ArrowRight,
   Clock,
   Mail,
   MapPin,
   Phone,
   type LucideIcon,
 } from "lucide-react";
+import { AreasOfPractice } from "@/components/areas-of-practice";
 import { CtaBanner } from "@/components/cta-banner";
 import { HeroLogo } from "@/components/hero-logo";
 import { InquiryForm } from "@/components/inquiry-form";
@@ -15,7 +15,7 @@ import { PracticeIcon } from "@/components/practice-icon";
 import { LawyersRoster } from "@/components/lawyers-roster";
 import { TeamBanner } from "@/components/team-banner";
 import { Container, Eyebrow } from "@/components/ui";
-import { attorneys, firm, firmStats, practiceAreas } from "@/lib/site";
+import { attorneys, firm, firmStats } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "FGDLaw | Established 2002",
@@ -28,43 +28,7 @@ export default function Home() {
       <HeroLogo />
       <TeamBanner />
       <LawyersRoster />
-
-      <section className="bg-cream py-20 md:py-24">
-        <Container>
-          <div className="mx-auto max-w-2xl text-center">
-            <Eyebrow>Practice Areas</Eyebrow>
-            <h2 className="mt-3 font-serif text-4xl text-navy md:text-[2.6rem]">
-              Comprehensive legal services, tailored to your needs
-            </h2>
-            <p className="mt-4 text-[15px] leading-7 text-muted">
-              From corporate governance to labor disputes, our multidisciplinary
-              team brings decades of combined military, academic, and courtroom
-              experience.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {practiceAreas.map((area) => (
-              <article
-                key={area.slug}
-                className="rounded-2xl border border-navy/6 bg-white p-7 shadow-[0_8px_30px_rgba(8,21,38,0.04)]"
-              >
-                <span className="grid h-11 w-11 place-items-center rounded-lg bg-cream text-navy/70">
-                  <PracticeIcon name={area.icon} className="h-5 w-5" />
-                </span>
-                <h3 className="mt-5 font-serif text-xl text-navy">{area.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted">{area.summary}</p>
-                <Link
-                  href={`/practice-areas/${area.slug}`}
-                  className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-gold hover:text-navy"
-                >
-                  Learn more
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-              </article>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <AreasOfPractice />
 
       <section className="bg-navy">
         <Container className="grid grid-cols-2 gap-8 py-16 md:grid-cols-4 md:py-20">
