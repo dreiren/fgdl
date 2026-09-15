@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
   Clock,
   Mail,
@@ -11,11 +10,10 @@ import { AreasOfPractice } from "@/components/areas-of-practice";
 import { CtaBanner } from "@/components/cta-banner";
 import { HeroLogo } from "@/components/hero-logo";
 import { InquiryForm } from "@/components/inquiry-form";
-import { PracticeIcon } from "@/components/practice-icon";
 import { LawyersRoster } from "@/components/lawyers-roster";
 import { TeamBanner } from "@/components/team-banner";
 import { Container, Eyebrow } from "@/components/ui";
-import { attorneys, firm, firmStats } from "@/lib/site";
+import { firm } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "FGDLaw | Established 2002",
@@ -29,8 +27,6 @@ export default function Home() {
       <TeamBanner />
       <LawyersRoster />
       <AreasOfPractice />
-
-      
 
       <section className="bg-quote py-20 text-center">
         <Container className="max-w-3xl">
