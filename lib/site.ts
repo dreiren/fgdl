@@ -174,6 +174,60 @@ export function getAttorney(slug: string) {
   return attorneys.find((attorney) => attorney.slug === slug);
 }
 
+export const lawyersRoster = [
+  {
+    slug: "carl-ericson-john-r-dedace",
+    name: "Atty. Carl Ericson John R. Dedace, JD, MPA, CSP, CSMS",
+    title: "Managing Counsel",
+    focusAreas: [
+      "Labor and Employment Law",
+      "Human Resources",
+      "Corporate Law",
+      "Data Privacy",
+      "Regulatory Compliance",
+    ],
+  },
+  {
+    slug: "mary-rose-c-reyes",
+    name: "Atty. Mary Rose C. Reyes, JD",
+    title: "Associate Counsel",
+    focusAreas: [
+      "Litigation",
+      "Civil Law",
+      "Criminal Law",
+      "Military Justice",
+      "Legal Research",
+      "Data Privacy",
+    ],
+  },
+  {
+    slug: "frederick-g-dedace",
+    name: "Atty. Frederick G. Dedace, PhD",
+    title: "Founder",
+    focusAreas: [
+      "Political Law",
+      "Labor Law",
+      "Public Management",
+      "National Security",
+      "Human Resources",
+      "Institutional Leadership",
+    ],
+  },
+  {
+    slug: "joan-don-a-napay",
+    name: "Atty. Joan Don A. Napay, JD",
+    title: "Affiliated Counsel",
+    focusAreas: [
+      "Family Law",
+      "Adoption",
+      "Guardianship",
+      "Special Proceedings",
+      "Psychology and Law",
+      "Public Service",
+    ],
+  },
+] as const;
+
 export const insights = [
   {
     slug: "labor-compliance-across-borders",

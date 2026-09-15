@@ -12,6 +12,7 @@ import { CtaBanner } from "@/components/cta-banner";
 import { HeroLogo } from "@/components/hero-logo";
 import { InquiryForm } from "@/components/inquiry-form";
 import { PracticeIcon } from "@/components/practice-icon";
+import { LawyersRoster } from "@/components/lawyers-roster";
 import { TeamBanner } from "@/components/team-banner";
 import { Container, Eyebrow } from "@/components/ui";
 import { attorneys, firm, firmStats, practiceAreas } from "@/lib/site";
@@ -26,6 +27,7 @@ export default function Home() {
     <>
       <HeroLogo />
       <TeamBanner />
+      <LawyersRoster />
 
       <section className="bg-cream py-20 md:py-24">
         <Container>
