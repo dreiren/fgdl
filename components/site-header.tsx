@@ -37,7 +37,7 @@ export function SiteHeader() {
           </a>
         </Container>
       </div>
-      <header className="sticky top-0 z-50">
+      <header className="sticky top-0 z-50 isolate">
         <StickyNav />
       </header>
     </>

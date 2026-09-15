@@ -29,7 +29,7 @@ export function StickyNav() {
   return (
     <div
       className={cn(
-        "border-b border-navy/5 bg-cream/95 backdrop-blur-md transition-shadow",
+        "border-b border-navy/5 bg-cream backdrop-blur-md transition-shadow",
         stuck && "shadow-[0_8px_24px_rgba(8,21,38,0.08)]",
       )}
     >

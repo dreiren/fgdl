@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <section className="relative overflow-hidden bg-navy-deep text-white">
+      <section className="relative z-0 overflow-hidden bg-navy-deep text-white">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_42%,rgba(200,162,38,0.12),transparent_28%)]" />
         <Container className="relative grid items-center gap-12 py-16 lg:grid-cols-[1.15fr_0.85fr] lg:py-24">
           <div>
