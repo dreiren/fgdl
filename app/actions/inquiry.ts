@@ -1,42 +1,40 @@
 "use server";
 
+import {
+  normalizeField,
+  validateInquiry,
+  type InquiryFieldErrors,
+} from "@/lib/validation";
+
 export type InquiryState = {
   status: "idle" | "success" | "error";
   message?: string;
+  fieldErrors?: InquiryFieldErrors;
 };
-
-function readField(formData: FormData, key: string) {
-  const value = formData.get(key);
-  return typeof value === "string" ? value.trim() : "";
-}
 
 export async function submitInquiry(
   _prev: InquiryState,
   formData: FormData,
 ): Promise<InquiryState> {
-  const name = readField(formData, "name");
-  const email = readField(formData, "email");
-  const message = readField(formData, "message");
+  const fields = {
+    name: normalizeField(formData.get("name")),
+    email: normalizeField(formData.get("email")),
+    message: normalizeField(formData.get("message")),
+  };
+  const fieldErrors = validateInquiry(fields);
 
-  if (name.length < 2) {
-    return { status: "error", message: "Please enter your full name." };
-  }
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return { status: "error", message: "Please enter a valid email address." };
-  }
-
-  if (message.length < 12) {
+  if (Object.keys(fieldErrors).length > 0) {
     return {
       status: "error",
-      message: "Please briefly describe your legal concern.",
+      message: "Please correct the highlighted fields.",
+      fieldErrors,
     };
   }
 
   console.info("[fgdlaw] consultation inquiry", {
-    name,
-    email,
-    messageLength: message.length,
+    name: fields.name,
+    email: fields.email,
+    messageLength: fields.message.length,
   });
 
   return {

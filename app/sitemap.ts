@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { attorneys, insights, practiceAreas } from "@/lib/site";
+import { attorneys, practiceAreas } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://fgdlaw.net";
@@ -8,7 +8,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/practice-areas",
     "/team",
-    "/insights",
     "/contact",
     "/careers",
   ];
@@ -24,10 +23,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...attorneys.map((attorney) => ({
       url: `${base}/team/${attorney.slug}`,
-      lastModified: new Date(),
-    })),
-    ...insights.map((insight) => ({
-      url: `${base}/insights/${insight.slug}`,
       lastModified: new Date(),
     })),
   ];
