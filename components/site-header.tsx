@@ -1,13 +1,11 @@
-import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { Logo } from "@/components/logo";
-import { MobileNav } from "@/components/mobile-nav";
-import { ButtonLink, Container } from "@/components/ui";
-import { firm, navLinks } from "@/lib/site";
+import { StickyNav } from "@/components/sticky-nav";
+import { Container } from "@/components/ui";
+import { firm } from "@/lib/site";
 
 export function SiteHeader() {
   return (
-    <header className="relative z-40">
+    <>
       <div className="bg-navy text-[12px] text-white/80">
         <Container className="flex h-9 items-center justify-between gap-4">
           <p className="flex min-w-0 items-center gap-5">
@@ -39,31 +37,9 @@ export function SiteHeader() {
           </a>
         </Container>
       </div>
-      <div className="border-b border-navy/5 bg-cream/95 backdrop-blur-md">
-        <Container className="flex h-[4.5rem] items-center justify-between gap-6">
-          <Link href="/" className="shrink-0" aria-label="FGDLaw home">
-            <Logo />
-          </Link>
-          <nav
-            className="hidden items-center gap-8 text-[15px] text-navy lg:flex"
-            aria-label="Primary"
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-medium transition-colors hover:text-gold"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="hidden lg:block">
-            <ButtonLink href="/contact">Book a Consultation</ButtonLink>
-          </div>
-          <MobileNav />
-        </Container>
-      </div>
-    </header>
+      <header className="sticky top-0 z-50">
+        <StickyNav />
+      </header>
+    </>
   );
 }
