@@ -30,64 +30,7 @@ export default function Home() {
       <LawyersRoster />
       <AreasOfPractice />
 
-      <section className="bg-navy">
-        <Container className="grid grid-cols-2 gap-8 py-16 md:grid-cols-4 md:py-20">
-          {firmStats.map((stat, index) => (
-            <div
-              key={stat.label}
-              className={index > 0 ? "md:border-l md:border-white/10 md:pl-8" : ""}
-            >
-              <p className="text-center font-serif text-4xl text-gold md:text-5xl">
-                {stat.value}
-              </p>
-              <p className="mt-2 text-center text-[11px] tracking-[0.16em] text-white/55 uppercase">
-                {stat.label}
-              </p>
-            </div>
-          ))}
-        </Container>
-      </section>
-
-      <section className="bg-cream py-20 md:py-24">
-        <Container>
-          <div className="mx-auto max-w-2xl text-center">
-            <Eyebrow>Meet the Team</Eyebrow>
-            <h2 className="mt-3 font-serif text-4xl text-navy md:text-[2.6rem]">
-              Seasoned counsel, distinguished credentials
-            </h2>
-            <p className="mt-4 text-[15px] leading-7 text-muted">
-              Our attorneys combine legal scholarship with backgrounds in public
-              administration, national security, and human resources management.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {attorneys.map((attorney) => (
-              <Link
-                key={attorney.slug}
-                href={`/team/${attorney.slug}`}
-                className="overflow-hidden rounded-2xl border border-navy/6 bg-white shadow-[0_8px_30px_rgba(8,21,38,0.04)] transition-transform hover:-translate-y-0.5"
-              >
-                <div className="grid h-36 place-items-center bg-[#17345a]">
-                  <span className="grid h-16 w-16 place-items-center rounded-full bg-white/12 text-white/80">
-                    <PracticeIcon name="user" className="h-8 w-8" />
-                  </span>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-serif text-[17px] leading-snug text-navy">
-                    {attorney.name}
-                  </h3>
-                  <p className="mt-1 text-[11px] font-semibold tracking-[0.12em] text-gold uppercase">
-                    {attorney.role}
-                  </p>
-                  <p className="mt-2 text-sm leading-5 text-muted">
-                    {attorney.cardSummary}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </Container>
-      </section>
+      
 
       <section className="bg-quote py-20 text-center">
         <Container className="max-w-3xl">
