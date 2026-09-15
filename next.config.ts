@@ -23,6 +23,16 @@ const nextConfig: NextConfig = {
         destination: "/practice-areas/human-resources-advisory",
         permanent: true,
       },
+      {
+        source: "/insights",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/insights/:path*",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
 };

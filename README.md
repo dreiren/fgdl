@@ -24,11 +24,10 @@ Open [http://localhost:3000](http://localhost:3000).
 - `/about` — firm history and values
 - `/practice-areas` and `/practice-areas/[slug]` — six practice desks
 - `/team` and `/team/[slug]` — counsel biographies
-- `/insights` — general-information notes from practice
 - `/contact` — office details and inquiry form
 - `/careers` — how to send an application
 
-The inquiry form validates submissions on the server. Wire it to mail delivery before production use.
+The inquiry form validates submissions on the client and server, including checks that reject HTML and script injection. Wire it to mail delivery before production use.
 
 ## Scripts
 

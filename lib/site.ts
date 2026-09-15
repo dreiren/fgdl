@@ -25,7 +25,6 @@ export const navLinks = [
   { href: "/about" as const, label: "About" },
   { href: "/practice-areas" as const, label: "Practice Areas" },
   { href: "/team" as const, label: "Our Team" },
-  { href: "/insights" as const, label: "Insights" },
   { href: "/contact" as const, label: "Contact" },
 ];
 
@@ -412,57 +411,6 @@ export const lawyersRoster = [
     ],
   },
 ] as const;
-
-export const insights = [
-  {
-    slug: "labor-compliance-across-borders",
-    title: "Labor compliance for companies operating in the Philippines and abroad",
-    date: "2026-03-12",
-    category: "Corporate & Labor",
-    excerpt:
-      "Growing organizations need employment counsel that can travel with the business — from workplace policies at home to cross-border HR questions.",
-    paragraphs: [
-      "Philippine employers are expected to keep workplace rules, contracts, and disciplinary processes consistent with the Labor Code and related issuances. When a company also has people, vendors, or operations overseas, those local rules sit beside a second set of practical questions: which law governs a given worker, how policies are rolled out, and how disputes are contained early.",
-      "FGDLaw’s labor and corporate practice is built for that overlap. The firm advises on employment documentation, HR compliance, and dispute resolution for corporations operating in the Philippines and abroad — work that benefits from both courtroom discipline and human-resources experience inside the affiliated consultancy, Fortitude Global Dimensions, Inc.",
-      "A sound program usually starts with the ordinary: clear contracts, documented policies, and managers who understand the process before a conflict hardens. From there, retained counsel can help the organization respond to inspections, claims, and governance issues without treating every question as a one-off emergency.",
-      "This article is general information about the kinds of matters the firm handles. It is not legal advice and does not create a lawyer-client relationship. For guidance on a specific situation, schedule a confidential consultation.",
-    ],
-  },
-  {
-    slug: "data-privacy-as-an-operating-discipline",
-    title: "Treating data privacy as an operating discipline, not a one-time filing",
-    date: "2026-01-20",
-    category: "Data Privacy",
-    excerpt:
-      "The Data Privacy Act is not only a registration exercise. It is a standing obligation that touches HR files, vendors, and incident response.",
-    paragraphs: [
-      "Philippine organizations that collect personal data — employee records, customer information, visitor logs, or health-related files — operate under the Data Privacy Act of 2012 and the rules of the National Privacy Commission. Registration and documentation matter, but they are not the whole of compliance.",
-      "A working privacy program typically includes a lawful basis for each processing activity, contracts that allocate responsibility with vendors, access controls, and a plan for what happens if a breach is suspected. Certified Data Protection Officer experience on staff helps translate those requirements into steps operations and HR teams can actually follow.",
-      "FGDLaw advises on information security, compliance audits, and breach response. That work is most useful when it is connected to the firm’s labor and corporate practice: the same employee files and vendor relationships that raise privacy questions often raise employment and contract questions as well.",
-      "This article is general information about the kinds of matters the firm handles. It is not legal advice and does not create a lawyer-client relationship. For guidance on a specific situation, schedule a confidential consultation.",
-    ],
-  },
-  {
-    slug: "discretion-in-special-proceedings",
-    title: "Discretion in special proceedings: adoption, guardianship, and the work around them",
-    date: "2025-11-04",
-    category: "Family & Special Proceedings",
-    excerpt:
-      "Special civil proceedings ask the court to rearrange family and personal status. They also ask counsel to move with care.",
-    paragraphs: [
-      "Adoption, guardianship, and related special proceedings are not ordinary commercial disputes. They involve family history, the welfare of children or persons who need protection, and court processes that are exacting about documents, notice, and proof.",
-      "Clients in these matters usually want two things at once: a path that the court can grant, and a manner of handling that does not turn a private difficulty into a public spectacle. That is why FGDLaw describes this work as counsel handled with discretion and compassion — and why affiliated counsel focused on special proceedings is part of the firm’s offering.",
-      "Preparation still decides outcomes. Complete records, realistic timelines, and frank advice about what a petition can and cannot accomplish are more useful than optimism. When military or public-service affiliations are part of a family’s circumstances, they should be accounted for early rather than discovered late.",
-      "This article is general information about the kinds of matters the firm handles. It is not legal advice and does not create a lawyer-client relationship. For guidance on a specific situation, schedule a confidential consultation.",
-    ],
-  },
-] as const;
-
-export type Insight = (typeof insights)[number];
-
-export function getInsight(slug: string) {
-  return insights.find((insight) => insight.slug === slug);
-}
 
 export const heroStats = [
   { value: "23+", label: "Years in Practice" },
