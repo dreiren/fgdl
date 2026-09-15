@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AttorneyPhoto } from "@/components/attorney-photo";
 import { CtaBanner } from "@/components/cta-banner";
 import { PageHero } from "@/components/page-hero";
-import { PracticeIcon } from "@/components/practice-icon";
 import { Container } from "@/components/ui";
 import { attorneys } from "@/lib/site";
 
@@ -28,11 +28,12 @@ export default function TeamPage() {
               href={`/team/${attorney.slug}`}
               className="overflow-hidden rounded-2xl border border-navy/6 bg-white shadow-[0_8px_30px_rgba(8,21,38,0.04)] transition-transform hover:-translate-y-0.5"
             >
-              <div className="grid h-40 place-items-center bg-[#17345a]">
-                <span className="grid h-16 w-16 place-items-center rounded-full bg-white/12 text-white/80">
-                  <PracticeIcon name="user" className="h-8 w-8" />
-                </span>
-              </div>
+              <AttorneyPhoto
+                src={attorney.image}
+                name={attorney.name}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="aspect-[4/5]"
+              />
               <div className="p-6">
                 <h2 className="font-serif text-2xl text-navy">{attorney.name}</h2>
                 <p className="mt-1 text-[11px] font-semibold tracking-[0.12em] text-gold uppercase">
