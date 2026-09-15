@@ -330,6 +330,27 @@ export function getAttorney(slug: string) {
   return attorneys.find((attorney) => attorney.slug === slug);
 }
 
+export const supportManager = {
+  name: "Ruby R. Sta. Ana",
+  role: "Administrative & Legal Support Manager",
+} as const;
+
+export const supportAssociates = [
+  { name: "Hannah M. Sarmiento" },
+  { name: "Natalie A. Troncales" },
+] as const;
+
+export const supportTeam = {
+  title: "Professional Legal Support Team",
+  paragraphs: [
+    "Behind the legal services of the Firm is a dedicated team of administrative and support professionals who help ensure that its day-to-day operations are efficient, organized, and responsive to the needs of both clients and counsel.",
+    "The Firm’s administrative support staff assists in client coordination, records and document management, scheduling, case and office administration, communications, and other essential support functions that contribute to the orderly delivery of legal services.",
+    "Working closely with the Firm’s lawyers, the team helps maintain the flow of information, documents, and appointments necessary for effective case management and client service. Their work supports the Firm’s commitment to professionalism, confidentiality, efficiency, and responsive service.",
+    "Recognizing that the practice of law depends not only on legal expertise but also on strong administrative systems, the Firm values the important role of its support personnel in maintaining an organized and professional working environment.",
+    "Through their diligence, coordination, and attention to detail, the administrative support staff contributes to the Firm’s continuing objective of providing clients with reliable, efficient, and professionally managed legal services.",
+  ],
+} as const;
+
 export const lawyersRoster = [
   {
     slug: "carl-ericson-john-r-dedace",
