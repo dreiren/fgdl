@@ -56,17 +56,22 @@ body {
 
 @keyframes fgdlaw-team-sink {
   from {
-    transform: translate3d(0, -8rem, 0);
+    transform: translate3d(0, -10rem, 0);
   }
   to {
-    transform: translate3d(0, 8rem, 0);
+    transform: translate3d(0, 12rem, 0);
   }
+}
+
+.team-banner {
+  view-timeline-name: --team-banner;
+  view-timeline-axis: block;
 }
 
 @supports (animation-timeline: view()) {
   .team-parallax-layer {
     animation: fgdlaw-team-sink linear both;
-    animation-timeline: view();
+    animation-timeline: --team-banner;
     animation-range: cover 0% cover 100%;
   }
 }

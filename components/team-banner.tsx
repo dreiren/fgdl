@@ -22,7 +22,7 @@ export function TeamBanner() {
     const readScroll = () => {
       const rect = section.getBoundingClientRect();
       const vh = window.innerHeight;
-      const maxShift = Math.min(128, vh * 0.18);
+      const maxShift = Math.min(192, vh * 0.24);
       const start = vh;
       const end = -rect.height;
       const progress = Math.min(
@@ -34,7 +34,7 @@ export function TeamBanner() {
 
     const tick = () => {
       if (!running) return;
-      current += (target - current) * 0.06;
+      current += (target - current) * 0.08;
       if (Math.abs(target - current) < 0.05) current = target;
       layer.style.transform = `translate3d(0, ${current}px, 0)`;
       frame = requestAnimationFrame(tick);
@@ -56,22 +56,24 @@ export function TeamBanner() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen min-h-[100dvh] w-full overflow-hidden bg-[#e6e2dc]"
+      className="team-banner relative h-screen min-h-[100dvh] w-full bg-[#e6e2dc]"
       aria-label="FGDLaw team"
     >
-      <div
-        ref={layerRef}
-        className="team-parallax-layer absolute inset-x-0 top-0 h-[calc(100%+10rem)] will-change-transform"
-        style={{ top: 0 }}
-      >
-        <Image
-          src="/fgdlaw-team.jpg"
-          alt="FGDLaw counsel in the Manila office"
-          fill
-          sizes="100vw"
-          className="object-cover object-top"
-          style={{ top: 0, objectPosition: "top" }}
-        />
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          ref={layerRef}
+          className="team-parallax-layer absolute inset-x-0 top-0 h-[calc(100%+14rem)] will-change-transform"
+          style={{ top: 0 }}
+        >
+          <Image
+            src="/fgdlaw-team.jpg"
+            alt="FGDLaw counsel in the Manila office"
+            fill
+            sizes="100vw"
+            className="object-cover object-top"
+            style={{ top: 0, objectPosition: "top" }}
+          />
+        </div>
       </div>
     </section>
   );
