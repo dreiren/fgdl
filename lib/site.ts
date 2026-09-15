@@ -180,6 +180,7 @@ export const attorneys = [
     slug: "frederick-g-dedace",
     name: "Atty. Frederick G. Dedace, PhD",
     role: "Founder",
+    image: "/team/frederick-g-dedace.jpg",
     tagline:
       "Lawyer • Educator • Management Consultant • Peace and Security Practitioner",
     cardSummary:
@@ -218,6 +219,7 @@ export const attorneys = [
     slug: "carl-ericson-john-r-dedace",
     name: "Atty. Carl Ericson John R. Dedace, JD, MPA, CSP, CSMS",
     role: "Managing Counsel",
+    image: "/team/carl-ericson-john-r-dedace.jpg",
     tagline:
       "Lawyer • Educator • Human Resources Professional • Corporate and Labor Law Practitioner",
     cardSummary:
@@ -260,6 +262,7 @@ export const attorneys = [
     slug: "joan-don-a-napay",
     name: "Atty. Joan Don A. Napay",
     role: "Affiliated Counsel",
+    image: "/team/joan-don-a-napay.jpg",
     tagline: "Lawyer • Psychology Graduate • Special Proceedings Practitioner",
     cardSummary:
       "Affiliated counsel whose practice combines law, psychology, and public service in adoption, guardianship, and special proceedings.",
@@ -287,6 +290,7 @@ export const attorneys = [
     slug: "mary-rose-c-reyes",
     name: "Atty. Mary Rose C. Reyes",
     role: "Associate Counsel",
+    image: "/team/mary-rose-c-reyes.jpg",
     tagline: "Lawyer • Educator • Litigation and Data Privacy Practitioner",
     cardSummary:
       "Licensed lawyer and educator in litigation, civil and criminal law, military justice, and data privacy.",
@@ -331,6 +335,7 @@ export const lawyersRoster = [
     slug: "carl-ericson-john-r-dedace",
     name: "Atty. Carl Ericson John R. Dedace, JD, MPA, CSP, CSMS",
     title: "Managing Counsel",
+    image: "/team/carl-ericson-john-r-dedace.jpg",
     tagline:
       "Lawyer • Educator • Human Resources Professional • Corporate and Labor Law Practitioner",
     focusAreas: [
@@ -344,6 +349,7 @@ export const lawyersRoster = [
     slug: "mary-rose-c-reyes",
     name: "Atty. Mary Rose C. Reyes",
     title: "Associate Counsel",
+    image: "/team/mary-rose-c-reyes.jpg",
     tagline: "Lawyer • Educator • Litigation and Data Privacy Practitioner",
     focusAreas: [
       "Litigation",
@@ -358,6 +364,7 @@ export const lawyersRoster = [
     slug: "frederick-g-dedace",
     name: "Atty. Frederick G. Dedace, PhD",
     title: "Founder",
+    image: "/team/frederick-g-dedace.jpg",
     tagline:
       "Lawyer • Educator • Management Consultant • Peace and Security Practitioner",
     focusAreas: [
@@ -373,6 +380,7 @@ export const lawyersRoster = [
     slug: "joan-don-a-napay",
     name: "Atty. Joan Don A. Napay",
     title: "Affiliated Counsel",
+    image: "/team/joan-don-a-napay.jpg",
     tagline: "Lawyer • Psychology Graduate • Special Proceedings Practitioner",
     focusAreas: [
       "Adoption",

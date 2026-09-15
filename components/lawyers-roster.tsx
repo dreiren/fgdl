@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { lawyersRoster } from "@/lib/site";
@@ -49,34 +50,47 @@ export function LawyersRoster() {
             >
               <Link
                 href={`/team/${lawyer.slug}`}
-                className="flex h-full flex-col px-4 pb-5 pt-5 transition-colors hover:bg-[#fafafa]"
+                className="flex h-full flex-col transition-colors hover:bg-[#fafafa]"
               >
-                <h3 className="min-h-[4.4rem] text-center font-serif text-[1.28rem] leading-snug text-balance text-navy">
-                  {lawyer.name}
-                </h3>
-                <p className="mt-3 text-center text-[11px] font-semibold tracking-[0.22em] text-gold uppercase">
-                  {lawyer.title}
-                </p>
-                <p className="mt-3 min-h-[3.6rem] text-center text-[12px] leading-5 text-[#5a6573]">
-                  {lawyer.tagline}
-                </p>
-                <div className="mt-5 flex flex-1 flex-col justify-start bg-[#f3f4f6] px-3.5 py-5">
-                  <p className="text-center text-[10px] font-semibold tracking-[0.2em] text-[#c4a35a] uppercase">
-                    Areas of Focus
+                <div className="relative aspect-[4/5] overflow-hidden bg-[#17345a]">
+                  <Image
+                    src={lawyer.image}
+                    alt={lawyer.name}
+                    fill
+                    className="object-cover object-[center_18%]"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    quality={90}
+                    unoptimized
+                  />
+                </div>
+                <div className="flex flex-1 flex-col px-4 pb-5 pt-5">
+                  <h3 className="min-h-[4.4rem] text-center font-serif text-[1.28rem] leading-snug text-balance text-navy">
+                    {lawyer.name}
+                  </h3>
+                  <p className="mt-3 text-center text-[11px] font-semibold tracking-[0.22em] text-gold uppercase">
+                    {lawyer.title}
                   </p>
-                  <p className="mt-3 text-center text-[13px] leading-[1.75] text-[#5a6573]">
-                    {lawyer.focusAreas.map((area, index) => (
-                      <span key={area}>
-                        {index > 0 ? (
-                          <span className="text-gold" aria-hidden="true">
-                            {" "}
-                            •{" "}
-                          </span>
-                        ) : null}
-                        <span className="whitespace-nowrap">{area}</span>
-                      </span>
-                    ))}
+                  <p className="mt-3 min-h-[3.6rem] text-center text-[12px] leading-5 text-[#5a6573]">
+                    {lawyer.tagline}
                   </p>
+                  <div className="mt-5 flex flex-1 flex-col justify-start bg-[#f3f4f6] px-3.5 py-5">
+                    <p className="text-center text-[10px] font-semibold tracking-[0.2em] text-[#c4a35a] uppercase">
+                      Areas of Focus
+                    </p>
+                    <p className="mt-3 text-center text-[13px] leading-[1.75] text-[#5a6573]">
+                      {lawyer.focusAreas.map((area, index) => (
+                        <span key={area}>
+                          {index > 0 ? (
+                            <span className="text-gold" aria-hidden="true">
+                              {" "}
+                              •{" "}
+                            </span>
+                          ) : null}
+                          <span className="whitespace-nowrap">{area}</span>
+                        </span>
+                      ))}
+                    </p>
+                  </div>
                 </div>
               </Link>
             </article>

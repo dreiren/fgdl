@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AttorneyPhoto } from "@/components/attorney-photo";
 import { CtaBanner } from "@/components/cta-banner";
 import { PageHero } from "@/components/page-hero";
-import { PracticeIcon } from "@/components/practice-icon";
 import { Container } from "@/components/ui";
 import { attorneys, getAttorney } from "@/lib/site";
 
@@ -40,13 +40,15 @@ export default async function AttorneyPage({
         description={attorney.tagline}
       />
       <section className="bg-cream py-16 md:py-20">
-        <Container className="grid gap-10 lg:grid-cols-[0.35fr_0.65fr]">
+        <Container className="grid gap-10 lg:grid-cols-[0.38fr_0.62fr]">
           <div className="h-fit overflow-hidden rounded-2xl bg-white shadow-[0_8px_30px_rgba(8,21,38,0.04)]">
-            <div className="grid h-56 place-items-center bg-[#17345a]">
-              <span className="grid h-20 w-20 place-items-center rounded-full bg-white/12 text-white/80">
-                <PracticeIcon name="user" className="h-10 w-10" />
-              </span>
-            </div>
+            <AttorneyPhoto
+              src={attorney.image}
+              name={attorney.name}
+              sizes="(max-width: 1024px) 100vw, 38vw"
+              className="aspect-[4/5]"
+              priority
+            />
             <div className="p-6">
               <p className="font-serif text-xl text-navy">{attorney.name}</p>
               <p className="mt-1 text-[11px] font-semibold tracking-[0.12em] text-gold uppercase">
