@@ -52,9 +52,12 @@ export default function TeamPage() {
         </Container>
       </section>
 
-      <section className="bg-white py-16 md:py-20" aria-labelledby="support-team-heading">
+      <section
+        className="scroll-mt-24 bg-white py-16 md:py-20"
+        aria-labelledby="support-team-heading"
+      >
         <Container>
-          <article className="mx-auto max-w-xl border-t-[3px] border-gold bg-cream/60 px-6 py-8 text-center shadow-[0_8px_24px_rgba(8,21,38,0.04)]">
+          <article className="mx-auto max-w-xl border-t-[3px] border-gold bg-cream px-6 py-8 text-center shadow-[0_8px_24px_rgba(8,21,38,0.04)]">
             <h2 className="font-serif text-2xl text-navy md:text-[1.85rem]">
               {supportManager.name}
             </h2>
@@ -67,7 +70,7 @@ export default function TeamPage() {
             {supportAssociates.map((person) => (
               <article
                 key={person.name}
-                className="border-t-[3px] border-gold bg-cream/60 px-5 py-7 text-center shadow-[0_8px_24px_rgba(8,21,38,0.04)]"
+                className="border-t-[3px] border-gold bg-cream px-5 py-7 text-center shadow-[0_8px_24px_rgba(8,21,38,0.04)]"
               >
                 <h3 className="font-serif text-xl tracking-[0.04em] text-navy uppercase md:text-[1.35rem]">
                   {person.name}
