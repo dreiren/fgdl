@@ -179,50 +179,143 @@ export const attorneys = [
   {
     slug: "frederick-g-dedace",
     name: "Atty. Frederick G. Dedace, PhD",
-    role: "Founder & General Counsel",
+    role: "Founder",
+    tagline:
+      "Lawyer • Educator • Management Consultant • Peace and Security Practitioner",
     cardSummary:
-      "PhD in Peace & Security Administration; admitted to the Bar in 1999. IBP, ABA, PMAP member.",
-    bio: [
-      "Atty. Frederick G. Dedace, PhD, graduated in 1990 at Arellano University magna cum laude with the degree of Bachelor of Arts major in Political Science and cum laude Juris Doctor in 1998 at Jose Rizal University. He was admitted to the Philippine Bar in 1999.",
-      "In 2017 he earned his Master’s degree in Public Management major in Development and Security at the Development Academy of the Philippines and in 2023 completed and obtained his PhD in Peace and Security Administration at Bicol University. He completed the Executive Course in National Security at the National Defense College of the Philippines, Certificate in Strategic Officers Civil Military Operations Course at the AFP Civil Military Operations School as well as the Command and General Staff Course in 2015 at the AFP Command and General Staff College (AFPCGSC).",
-      "In 2002 he formally established The Law Firm of Frederick G. Dedace (FGDLaw) and in 2014 incorporated Fortitude Global Dimensions, Inc., a human resources consultancy firm, where he sits as Chairman of the Board.",
-      "A Bar Reviewer in Political and Labor Laws, his professional memberships to date include the Integrated Bar of the Philippines (IBP), previously with the American Bar Association (ABA), People Management Association of the Philippines (PMAP), Asian Schools HRMD Practitioners (ASHPI), and the Philippine Institute of Arbitrators (PIArb) among others.",
+      "Lawyer, educator, management consultant, and peace and security practitioner spanning law, human resource management, public administration, and national security.",
+    intro: [
+      "Atty. Frederick G. Dedace, PhD, is a lawyer, educator, management consultant, and peace and security practitioner whose professional career spans law, human resource management, public administration, national security, and organizational leadership.",
+      "He graduated magna cum laude from Arellano University in 1990 with a Bachelor of Arts, Major in Political Science. He later earned his Juris Doctor, cum laude, from Jose Rizal University in 1998 and was admitted to the Philippine Bar in 1999.",
+      "Driven by a commitment to continuing professional development, he pursued advanced studies in governance, development, and security. In 2017, he earned his Master’s degree in Public Management, Major in Development and Security, from the Development Academy of the Philippines. In 2023, he completed his Doctor of Philosophy in Peace and Security Administration at Bicol University.",
+      "His executive and professional military education includes the Executive Course in National Security at the National Defense College of the Philippines, the Strategic Officers Civil-Military Operations Course at the AFP Civil-Military Operations School, and the Command and General Staff Course at the AFP Command and General Staff College (AFPCGSC), which he completed in 2015.",
+    ],
+    sections: [
+      {
+        title: "Legal Practice and Corporate Leadership",
+        paragraphs: [
+          "In 2002, Atty. Dedace formally established The Law Firm of Frederick G. Dedace (FGDLaw), through which he has pursued his professional legal practice.",
+          "In 2014, he incorporated Fortitude Global Dimensions, Inc., a human resources and management consultancy firm, where he serves as Chairman of the Board. Through his work in law and consultancy, he has developed a multidisciplinary perspective on legal compliance, organizational governance, human resource management, leadership, and institutional development.",
+        ],
+      },
+      {
+        title: "Academic and Professional Engagement",
+        paragraphs: [
+          "Atty. Dedace also serves as a Bar Reviewer in Political Law and Labor Law, combining legal practice with professional and academic instruction.",
+          "His professional affiliations include the Integrated Bar of the Philippines (IBP), People Management Association of the Philippines (PMAP), Asian Schools HRMD Practitioners, Inc. (ASHPI), and the Philippine Institute of Arbitrators (PIArb). He was also previously affiliated with the American Bar Association (ABA), among other professional organizations.",
+        ],
+      },
+      {
+        title: "A Multidisciplinary Professional Career",
+        paragraphs: [
+          "His academic preparation and professional experience bring together the disciplines of law, public management, human resource management, development, national security, and peace and security administration.",
+          "Across his work as a lawyer, educator, consultant, and organizational leader, Atty. Dedace continues to advocate professional competence, institutional integrity, responsible leadership, and the effective application of law and management principles in both public and private organizations.",
+        ],
+      },
     ],
   },
   {
     slug: "carl-ericson-john-r-dedace",
-    name: "Atty. Carl Ericson John R. Dedace",
+    name: "Atty. Carl Ericson John R. Dedace, JD, MPA, CSP, CSMS",
     role: "Managing Counsel",
+    tagline:
+      "Lawyer • Educator • Human Resources Professional • Corporate and Labor Law Practitioner",
     cardSummary:
-      "MPA, CSP, CSMS. President, Fortitude Global Dimensions Inc. Faculty, Arellano University Law.",
-    bio: [
-      "Atty. Carl Ericson John R. Dedace, JD, MPA, CSP earned his Bachelor of Science in Business Administration major in Human Resources (BSBA) at the De La Salle College of Saint Benilde and his Juris Doctor from Arellano University School of Law. He obtained his Master’s degree in Public Administration (MPA) at Jose Rizal University, where he was cited with academic distinction, and is currently pursuing doctorate studies in Public Administration.",
-      "Atty. Carl is the President of Fortitude Global Dimensions, Inc., a human resources management consultancy company with which the firm is affiliated, and teaches Labor Laws and Social Legislation as a faculty member of Arellano University School of Law.",
-      "He likewise completed the Executive Course in National Security at the National Defense College of the Philippines and the Certificate in Strategic Officers Civil Military Operations Course at the AFP Civil Military Operations School.",
-      "His professional memberships include the Integrated Bar of the Philippines (IBP), People Management Association of the Philippines (PMAP), Business Continuity Managers Association of the Philippines (BCMAP), and Philippine Society for Industrial Security (PSIS). His areas of focus include human resources, labor and employment, data privacy, and corporate law.",
+      "Lawyer, educator, and human resources professional in labor and employment, human resource management, data privacy, and corporate law.",
+    intro: [
+      "Atty. Carl Ericson John R. Dedace is a lawyer, educator, and human resources professional whose practice and professional experience encompass labor and employment law, human resource management, data privacy, corporate law, and organizational management.",
+      "He earned his Bachelor of Science in Business Administration, Major in Human Resources, from De La Salle–College of Saint Benilde and his Juris Doctor from the Arellano University School of Law. He subsequently obtained his Master in Public Administration (MPA) from Jose Rizal University, where he was recognized with academic distinction. He is currently pursuing doctoral studies in Public Administration.",
+    ],
+    sections: [
+      {
+        title: "Legal Practice and Corporate Leadership",
+        paragraphs: [
+          "As Managing Counsel, Atty. Dedace brings together legal practice and management expertise in advising clients on matters involving labor and employment, human resources, corporate governance, regulatory compliance, and data privacy.",
+          "He is also the President of Fortitude Global Dimensions, Inc., a human resources management consultancy firm affiliated with the Firm. His leadership role provides him with practical experience at the intersection of law, human resource management, organizational development, and corporate administration.",
+        ],
+      },
+      {
+        title: "Academic and Professional Engagement",
+        paragraphs: [
+          "Alongside his legal and corporate practice, Atty. Dedace is a faculty member of the Arellano University School of Law, where he teaches Labor Laws and Social Legislation. His academic work complements his professional practice by allowing him to contribute to the education and development of future members of the legal profession.",
+          "His professional development also extends to national security and civil-military affairs. He completed the Executive Course in National Security at the National Defense College of the Philippines and the Strategic Officers Civil-Military Operations Course at the AFP Civil-Military Operations School.",
+        ],
+      },
+      {
+        title: "Professional Affiliations",
+        paragraphs: [
+          "Atty. Dedace maintains professional affiliations with the Integrated Bar of the Philippines (IBP), People Management Association of the Philippines (PMAP), Business Continuity Managers Association of the Philippines (BCMAP), and the Philippine Society for Industrial Security (PSIS).",
+        ],
+      },
+      {
+        title: "Areas of Practice",
+        paragraphs: [
+          "His principal areas of professional focus include Human Resources, Labor and Employment, Data Privacy, and Corporate Law, reflecting a multidisciplinary practice that combines legal expertise with hands-on experience in organizational and human resource management.",
+          "Through his work in legal practice, corporate leadership, and legal education, Atty. Dedace brings a practical and integrated approach to addressing the legal, regulatory, and organizational concerns of both employers and business organizations.",
+        ],
+      },
     ],
   },
   {
     slug: "joan-don-a-napay",
     name: "Atty. Joan Don A. Napay",
     role: "Affiliated Counsel",
+    tagline: "Lawyer • Psychology Graduate • Special Proceedings Practitioner",
     cardSummary:
-      "Focus on adoption, guardianship, and special proceedings. Magna cum laude graduate.",
-    bio: [
-      "Atty. Joan obtained the degree of Bachelor of Science in Psychology magna cum laude from the Divine Word College of Legazpi, Albay, and her Juris Doctor from the Arellano University School of Law.",
-      "She is affiliated with the Armed Forces of the Philippines, Medical Service. Her focus areas of practice center on adoption, guardianship, and other special proceedings.",
+      "Affiliated counsel whose practice combines law, psychology, and public service in adoption, guardianship, and special proceedings.",
+    intro: [
+      "Atty. Joan Don A. Napay is an affiliated counsel whose academic and professional background combines law, psychology, and public service.",
+      "She earned her Bachelor of Science in Psychology, magna cum laude, from Divine Word College of Legazpi, Albay, and subsequently obtained her Juris Doctor from the Arellano University School of Law.",
+    ],
+    sections: [
+      {
+        title: "Professional Affiliation",
+        paragraphs: [
+          "Atty. Napay is affiliated with the Armed Forces of the Philippines Medical Service, an experience that complements her legal training with exposure to institutional service, discipline, and professional responsibility.",
+        ],
+      },
+      {
+        title: "Areas of Practice",
+        paragraphs: [
+          "Her practice primarily focuses on adoption, guardianship, and other special proceedings, where her background in psychology provides an additional perspective in matters involving family relations, personal welfare, and the protection of vulnerable individuals.",
+          "Through her legal practice, Atty. Napay brings a careful and client-centered approach to matters that often require not only sound legal judgment, but also sensitivity to the personal and familial circumstances involved.",
+        ],
+      },
     ],
   },
   {
     slug: "mary-rose-c-reyes",
     name: "Atty. Mary Rose C. Reyes",
-    role: "Junior Counsel",
+    role: "Associate Counsel",
+    tagline: "Lawyer • Educator • Litigation and Data Privacy Practitioner",
     cardSummary:
-      "Litigation, civil & criminal law. Certified Data Protection Officer and university professor.",
-    bio: [
-      "Atty. Mary Rose C. Reyes is a licensed lawyer and educator dedicated to the pursuit of justice, academic excellence, and professional integrity. She earned her Bachelor of Arts in Legal Management from the University of Saint Louis, Tuguegarao, and her Juris Doctor degree from the Arellano University School of Law. She was admitted to the Philippine Bar in December 2023.",
-      "With a strong background in litigation, civil law, criminal law, and military justice, Atty. Rose provides legal insight grounded in both practical experience and academic depth. As a Certified Data Protection Officer, she also offers expertise in data privacy compliance and information security.",
-      "Currently, she is a Professor at Arellano University, where she mentors Political Science students. Alongside her teaching career, she is pursuing her Master of Laws (LL.M.) at Saint Louis University, Baguio City.",
+      "Licensed lawyer and educator in litigation, civil and criminal law, military justice, and data privacy.",
+    intro: [
+      "Atty. Mary Rose C. Reyes is a licensed lawyer and educator whose professional interests span litigation, civil law, criminal law, military justice, and data privacy. Her work reflects a commitment to professional integrity, legal competence, and continuing academic development.",
+      "She earned her Bachelor of Arts in Legal Management from the University of Saint Louis, Tuguegarao, and her Juris Doctor from the Arellano University School of Law. She was admitted to the Philippine Bar in December 2023.",
+    ],
+    sections: [
+      {
+        title: "Legal Practice and Professional Focus",
+        paragraphs: [
+          "As Associate Counsel, Atty. Reyes assists in matters involving civil and criminal litigation, military justice, legal research, and regulatory compliance.",
+          "She is also a Certified Data Protection Officer, providing her with additional expertise in data privacy compliance, information governance, and the protection of personal and organizational data.",
+        ],
+      },
+      {
+        title: "Academic Engagement",
+        paragraphs: [
+          "Alongside her legal practice, Atty. Reyes is engaged in the academe as a Professor at Arellano University, where she mentors and teaches students in the field of Political Science.",
+          "Her academic work complements her legal practice by strengthening her research, analytical, and instructional capabilities while allowing her to contribute to the development of future professionals and public servants.",
+        ],
+      },
+      {
+        title: "Continuing Legal Education",
+        paragraphs: [
+          "Atty. Reyes continues to advance her legal education and is currently pursuing her Master of Laws (LL.M.) at Saint Louis University in Baguio City.",
+          "Her combination of legal practice, teaching experience, and continuing graduate studies provides her with a well-rounded perspective in addressing contemporary legal issues and client concerns.",
+        ],
+      },
     ],
   },
 ] as const;
@@ -238,18 +331,20 @@ export const lawyersRoster = [
     slug: "carl-ericson-john-r-dedace",
     name: "Atty. Carl Ericson John R. Dedace, JD, MPA, CSP, CSMS",
     title: "Managing Counsel",
+    tagline:
+      "Lawyer • Educator • Human Resources Professional • Corporate and Labor Law Practitioner",
     focusAreas: [
-      "Labor and Employment Law",
       "Human Resources",
-      "Corporate Law",
+      "Labor and Employment",
       "Data Privacy",
-      "Regulatory Compliance",
+      "Corporate Law",
     ],
   },
   {
     slug: "mary-rose-c-reyes",
-    name: "Atty. Mary Rose C. Reyes, JD",
+    name: "Atty. Mary Rose C. Reyes",
     title: "Associate Counsel",
+    tagline: "Lawyer • Educator • Litigation and Data Privacy Practitioner",
     focusAreas: [
       "Litigation",
       "Civil Law",
@@ -263,6 +358,8 @@ export const lawyersRoster = [
     slug: "frederick-g-dedace",
     name: "Atty. Frederick G. Dedace, PhD",
     title: "Founder",
+    tagline:
+      "Lawyer • Educator • Management Consultant • Peace and Security Practitioner",
     focusAreas: [
       "Political Law",
       "Labor Law",
@@ -274,15 +371,14 @@ export const lawyersRoster = [
   },
   {
     slug: "joan-don-a-napay",
-    name: "Atty. Joan Don A. Napay, JD",
+    name: "Atty. Joan Don A. Napay",
     title: "Affiliated Counsel",
+    tagline: "Lawyer • Psychology Graduate • Special Proceedings Practitioner",
     focusAreas: [
-      "Family Law",
       "Adoption",
       "Guardianship",
       "Special Proceedings",
-      "Psychology and Law",
-      "Public Service",
+      "Family Relations",
     ],
   },
 ] as const;

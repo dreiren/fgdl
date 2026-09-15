@@ -9,7 +9,7 @@ import { attorneys } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Our Team",
   description:
-    "Meet FGDLaw counsel — attorneys with backgrounds in public administration, national security, human resources, litigation, and special proceedings.",
+    "Meet FGDLaw counsel — lawyers, educators, and practitioners in labor, corporate law, special proceedings, litigation, and data privacy.",
 };
 
 export default function TeamPage() {
@@ -18,7 +18,7 @@ export default function TeamPage() {
       <PageHero
         eyebrow="Meet the Team"
         title="Seasoned counsel, distinguished credentials"
-        description="Our attorneys combine legal scholarship with backgrounds in public administration, national security, and human resources management."
+        description="Our attorneys combine legal scholarship with backgrounds in public administration, national security, human resources, litigation, and special proceedings."
       />
       <section className="bg-cream py-16 md:py-20">
         <Container className="grid gap-6 md:grid-cols-2">
@@ -38,7 +38,8 @@ export default function TeamPage() {
                 <p className="mt-1 text-[11px] font-semibold tracking-[0.12em] text-gold uppercase">
                   {attorney.role}
                 </p>
-                <p className="mt-3 text-sm leading-6 text-muted">{attorney.cardSummary}</p>
+                <p className="mt-3 text-sm leading-6 text-muted">{attorney.tagline}</p>
+                <p className="mt-3 text-sm leading-6 text-ink/80">{attorney.intro[0]}</p>
               </div>
             </Link>
           ))}

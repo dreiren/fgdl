@@ -57,6 +57,9 @@ export function LawyersRoster() {
                 <p className="mt-3 text-center text-[11px] font-semibold tracking-[0.22em] text-gold uppercase">
                   {lawyer.title}
                 </p>
+                <p className="mt-3 min-h-[3.6rem] text-center text-[12px] leading-5 text-[#5a6573]">
+                  {lawyer.tagline}
+                </p>
                 <div className="mt-5 flex flex-1 flex-col justify-start bg-[#f3f4f6] px-3.5 py-5">
                   <p className="text-center text-[10px] font-semibold tracking-[0.2em] text-[#c4a35a] uppercase">
                     Areas of Focus
