@@ -17,9 +17,9 @@ export function HeroLogo() {
     let target = 0;
     let running = true;
 
-    const maxShift = 64;
-    const factor = 0.14;
-    const follow = 0.05;
+    const maxShift = 120;
+    const factor = 0.28;
+    const follow = 0.06;
 
     const readScroll = () => {
       const distance = Math.max(0, window.scrollY);
