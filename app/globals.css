@@ -48,15 +48,32 @@ body {
 
 @supports (animation-timeline: scroll()) {
   .hero-parallax-layer {
-    animation: fgdlaw-hero-rise linear both;
+    animation: fgdlaw-hero-rise cubic-bezier(0.16, 1, 0.3, 1) both;
     animation-timeline: scroll(root);
     animation-range: 0 55vh;
-    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@keyframes fgdlaw-team-sink {
+  from {
+    transform: translate3d(0, -8rem, 0);
+  }
+  to {
+    transform: translate3d(0, 8rem, 0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .team-parallax-layer {
+    animation: fgdlaw-team-sink linear both;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-parallax-layer {
+  .hero-parallax-layer,
+  .team-parallax-layer {
     animation: none !important;
     transform: none !important;
   }
