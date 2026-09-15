@@ -5,12 +5,18 @@ import { submitInquiry, type InquiryState } from "@/app/actions/inquiry";
 import { cn } from "@/lib/cn";
 import {
   FIELD_LIMITS,
-  normalizeField,
   validateInquiry,
   type InquiryFieldErrors,
+  type InquiryFields,
 } from "@/lib/validation";
 
 const initialState: InquiryState = { status: "idle" };
+
+const emptyFields: InquiryFields = {
+  name: "",
+  email: "",
+  message: "",
+};
 
 const fieldClass = (invalid: boolean) =>
   cn(
@@ -23,24 +29,36 @@ export function InquiryForm({ className }: { className?: string }) {
     submitInquiry,
     initialState,
   );
+  const [values, setValues] = useState<InquiryFields>(emptyFields);
   const [clientErrors, setClientErrors] = useState<InquiryFieldErrors>({});
+  const [edited, setEdited] = useState<Partial<Record<keyof InquiryFields, boolean>>>(
+    {},
+  );
 
-  const fieldErrors: InquiryFieldErrors =
-    state.status === "error"
-      ? { ...clientErrors, ...state.fieldErrors }
-      : clientErrors;
+  const mergedErrors: InquiryFieldErrors = {
+    ...(state.status === "error" ? state.fieldErrors : {}),
+    ...clientErrors,
+  };
+  const fieldErrors: InquiryFieldErrors = {
+    name: edited.name ? undefined : mergedErrors.name,
+    email: edited.email ? undefined : mergedErrors.email,
+    message: edited.message ? undefined : mergedErrors.message,
+  };
 
-  function readFields(form: HTMLFormElement) {
-    const data = new FormData(form);
-    return {
-      name: normalizeField(data.get("name")),
-      email: normalizeField(data.get("email")),
-      message: normalizeField(data.get("message")),
-    };
+  function updateField(field: keyof InquiryFields, value: string) {
+    setValues((current) => ({ ...current, [field]: value }));
+    setEdited((current) => ({ ...current, [field]: true }));
+    setClientErrors((current) => {
+      if (!current[field]) return current;
+      const next = { ...current };
+      delete next[field];
+      return next;
+    });
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    const errors = validateInquiry(readFields(event.currentTarget));
+    const errors = validateInquiry(values);
+    setEdited({});
     setClientErrors(errors);
     if (Object.keys(errors).length > 0) {
       event.preventDefault();
@@ -67,6 +85,7 @@ export function InquiryForm({ className }: { className?: string }) {
       action={formAction}
       noValidate
       onSubmit={handleSubmit}
+      onReset={(event) => event.preventDefault()}
       className={cn(
         "rounded-2xl border border-navy/8 bg-white p-6 shadow-[0_12px_40px_rgba(8,21,38,0.08)] sm:p-8",
         className,
@@ -81,6 +100,8 @@ export function InquiryForm({ className }: { className?: string }) {
           autoComplete="name"
           maxLength={FIELD_LIMITS.name.max}
           placeholder="Juan Dela Cruz"
+          value={values.name}
+          onChange={(event) => updateField("name", event.target.value)}
           aria-invalid={Boolean(fieldErrors.name)}
           aria-describedby={fieldErrors.name ? "inquiry-name-error" : undefined}
           className={fieldClass(Boolean(fieldErrors.name))}
@@ -101,6 +122,8 @@ export function InquiryForm({ className }: { className?: string }) {
           inputMode="email"
           maxLength={FIELD_LIMITS.email.max}
           placeholder="juan@email.com"
+          value={values.email}
+          onChange={(event) => updateField("email", event.target.value)}
           aria-invalid={Boolean(fieldErrors.email)}
           aria-describedby={fieldErrors.email ? "inquiry-email-error" : undefined}
           className={fieldClass(Boolean(fieldErrors.email))}
@@ -119,6 +142,8 @@ export function InquiryForm({ className }: { className?: string }) {
           rows={4}
           maxLength={FIELD_LIMITS.message.max}
           placeholder="Tell us about your legal concern..."
+          value={values.message}
+          onChange={(event) => updateField("message", event.target.value)}
           aria-invalid={Boolean(fieldErrors.message)}
           aria-describedby={
             fieldErrors.message ? "inquiry-message-error" : undefined
@@ -135,7 +160,10 @@ export function InquiryForm({ className }: { className?: string }) {
           {fieldErrors.message}
         </p>
       ) : null}
-      {state.status === "error" && !fieldErrors.name && !fieldErrors.email && !fieldErrors.message ? (
+      {state.status === "error" &&
+      !fieldErrors.name &&
+      !fieldErrors.email &&
+      !fieldErrors.message ? (
         <p className="mt-4 text-sm text-red-700" role="alert">
           {state.message}
         </p>
