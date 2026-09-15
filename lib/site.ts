@@ -333,11 +333,12 @@ export function getAttorney(slug: string) {
 export const supportManager = {
   name: "Ruby R. Sta. Ana",
   role: "Administrative & Legal Support Manager",
+  image: "/team/ruby-r-sta-ana.jpg",
 } as const;
 
 export const supportAssociates = [
-  { name: "Hannah M. Sarmiento" },
-  { name: "Natalie A. Troncales" },
+  { name: "Hannah M. Sarmiento", image: "/team/hannah-m-sarmiento.jpg" },
+  { name: "Natalie A. Troncales", image: "/team/natalie-a-troncales.jpg" },
 ] as const;
 
 export const supportTeam = {

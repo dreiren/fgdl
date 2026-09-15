@@ -57,24 +57,40 @@ export default function TeamPage() {
         aria-labelledby="support-team-heading"
       >
         <Container>
-          <article className="mx-auto max-w-xl border-t-[3px] border-gold bg-cream px-6 py-8 text-center shadow-[0_8px_24px_rgba(8,21,38,0.04)]">
-            <h2 className="font-serif text-2xl text-navy md:text-[1.85rem]">
-              {supportManager.name}
-            </h2>
-            <p className="mt-3 text-[11px] font-semibold tracking-[0.18em] text-gold uppercase">
-              {supportManager.role}
-            </p>
+          <article className="mx-auto max-w-xl overflow-hidden rounded-2xl border border-navy/6 bg-white shadow-[0_8px_30px_rgba(8,21,38,0.04)]">
+            <AttorneyPhoto
+              src={supportManager.image}
+              name={supportManager.name}
+              sizes="(max-width: 768px) 100vw, 36rem"
+              className="aspect-[4/5]"
+            />
+            <div className="border-t-[3px] border-gold bg-cream px-6 py-8 text-center">
+              <h2 className="font-serif text-2xl text-navy md:text-[1.85rem]">
+                {supportManager.name}
+              </h2>
+              <p className="mt-3 text-[11px] font-semibold tracking-[0.18em] text-gold uppercase">
+                {supportManager.role}
+              </p>
+            </div>
           </article>
 
           <div className="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
             {supportAssociates.map((person) => (
               <article
                 key={person.name}
-                className="border-t-[3px] border-gold bg-cream px-5 py-7 text-center shadow-[0_8px_24px_rgba(8,21,38,0.04)]"
+                className="overflow-hidden rounded-2xl border border-navy/6 bg-white shadow-[0_8px_30px_rgba(8,21,38,0.04)]"
               >
-                <h3 className="font-serif text-xl tracking-[0.04em] text-navy uppercase md:text-[1.35rem]">
-                  {person.name}
-                </h3>
+                <AttorneyPhoto
+                  src={person.image}
+                  name={person.name}
+                  sizes="(max-width: 640px) 100vw, 24rem"
+                  className="aspect-[4/5]"
+                />
+                <div className="border-t-[3px] border-gold bg-cream px-5 py-7 text-center">
+                  <h3 className="font-serif text-xl tracking-[0.04em] text-navy uppercase md:text-[1.35rem]">
+                    {person.name}
+                  </h3>
+                </div>
               </article>
             ))}
           </div>
