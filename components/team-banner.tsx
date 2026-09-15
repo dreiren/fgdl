@@ -12,7 +12,6 @@ export function TeamBanner() {
     const section = sectionRef.current;
     if (!layer || !section) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (CSS.supports("animation-timeline: view()")) return;
 
     let frame = 0;
     let current = 0;
@@ -22,20 +21,14 @@ export function TeamBanner() {
     const readScroll = () => {
       const rect = section.getBoundingClientRect();
       const vh = window.innerHeight;
-      const maxShift = Math.min(192, vh * 0.24);
-      const start = vh;
-      const end = -rect.height;
-      const progress = Math.min(
-        1,
-        Math.max(0, (start - rect.top) / (start - end)),
-      );
-      target = -maxShift + progress * maxShift * 2;
+      const maxShift = Math.min(220, vh * 0.28);
+      target = Math.max(-maxShift, Math.min(maxShift, -rect.top * 0.42));
     };
 
     const tick = () => {
       if (!running) return;
       current += (target - current) * 0.08;
-      if (Math.abs(target - current) < 0.05) current = target;
+      if (Math.abs(target - current) < 0.04) current = target;
       layer.style.transform = `translate3d(0, ${current}px, 0)`;
       frame = requestAnimationFrame(tick);
     };
@@ -56,13 +49,13 @@ export function TeamBanner() {
   return (
     <section
       ref={sectionRef}
-      className="team-banner relative h-screen min-h-[100dvh] w-full bg-[#e6e2dc]"
+      className="relative h-screen min-h-[100dvh] w-full bg-[#e6e2dc]"
       aria-label="FGDLaw team"
     >
       <div className="absolute inset-0 overflow-hidden">
         <div
           ref={layerRef}
-          className="team-parallax-layer absolute inset-x-0 top-0 h-[calc(100%+14rem)] will-change-transform"
+          className="absolute inset-x-0 top-0 h-[calc(100%+16rem)] will-change-transform"
           style={{ top: 0 }}
         >
           <Image
