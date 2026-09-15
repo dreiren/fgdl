@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #0a1f3a;
+  --navy-deep: #081526;
+  --cream: #f7f5ed;
+  --gold: #c8a226;
+  --gold-soft: #d4b03a;
+  --ink: #142033;
+  --muted: #5a6573;
+  --quote: #f3ead4;
+  --logo: #ebeff2;
+}
+
+@theme inline {
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-cream: var(--cream);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-quote: var(--quote);
+  --color-logo: var(--logo);
+  --font-sans: var(--font-source);
+  --font-serif: var(--font-playfair);
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-source), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--gold) 40%, transparent);
+  color: var(--navy-deep);
+}
+
+@keyframes fgdlaw-hero-rise {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -7.5rem, 0);
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  .hero-parallax-layer {
+    animation: fgdlaw-hero-rise cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-timeline: scroll(root);
+    animation-range: 0 55vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-parallax-layer {
+    animation: none !important;
+    transform: none !important;
+  }
+}
