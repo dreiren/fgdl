@@ -36,3 +36,28 @@ body {
   background: color-mix(in srgb, var(--gold) 40%, transparent);
   color: var(--navy-deep);
 }
+
+@keyframes fgdlaw-hero-rise {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -7.5rem, 0);
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  .hero-parallax-layer {
+    animation: fgdlaw-hero-rise linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 55vh;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-parallax-layer {
+    animation: none !important;
+    transform: none !important;
+  }
+}

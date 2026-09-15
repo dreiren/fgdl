@@ -11,6 +11,7 @@ export function HeroLogo() {
     const layer = layerRef.current;
     if (!layer) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (CSS.supports("animation-timeline: scroll()")) return;
 
     let frame = 0;
     let current = 0;
@@ -18,9 +19,9 @@ export function HeroLogo() {
     let running = true;
 
     const readScroll = () => {
-      const maxShift = Math.min(160, window.innerHeight * 0.18);
+      const maxShift = Math.min(120, window.innerHeight * 0.16);
       const distance = Math.max(0, window.scrollY);
-      const linear = Math.min(distance * 0.22, maxShift);
+      const linear = Math.min(distance * 0.2, maxShift);
       const t = maxShift === 0 ? 0 : linear / maxShift;
       const eased = 1 - (1 - t) * (1 - t);
       target = -eased * maxShift;
@@ -59,7 +60,7 @@ export function HeroLogo() {
       <div className="relative aspect-[16/9] w-full overflow-hidden">
         <div
           ref={layerRef}
-          className="absolute inset-x-0 -top-[8%] h-[116%] will-change-transform"
+          className="hero-parallax-layer absolute inset-x-0 -top-[8%] h-[116%] will-change-transform"
         >
           <Image
             src="/fgdlaw-logo.png"
