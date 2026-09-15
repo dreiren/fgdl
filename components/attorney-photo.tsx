@@ -24,6 +24,8 @@ export function AttorneyPhoto({
         fill
         className={cn("object-cover object-[center_18%]", imageClassName)}
         sizes={sizes}
+        quality={90}
+        unoptimized
         priority={priority}
       />
     </div>

@@ -59,6 +59,8 @@ export function LawyersRoster() {
                     fill
                     className="object-cover object-[center_18%]"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    quality={90}
+                    unoptimized
                   />
                 </div>
                 <div className="flex flex-1 flex-col px-4 pb-5 pt-5">
