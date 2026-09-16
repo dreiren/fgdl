@@ -1,6 +1,12 @@
 "use client";
 
-import { useActionState, useCallback, useState, type FormEvent } from "react";
+import {
+  useActionState,
+  useCallback,
+  useRef,
+  useState,
+  type FormEvent,
+} from "react";
 import { submitInquiry, type InquiryState } from "@/app/actions/inquiry";
 import { cn } from "@/lib/cn";
 import {
@@ -26,10 +32,12 @@ const fieldClass = (invalid: boolean) =>
 
 export function InquiryForm({ className }: { className?: string }) {
   const [locked, setLocked] = useState(false);
+  const lockRef = useRef(false);
   const submit = useCallback(
     async (prev: InquiryState, formData: FormData) => {
       const result = await submitInquiry(prev, formData);
       if (result.status !== "success") {
+        lockRef.current = false;
         setLocked(false);
       }
       return result;
@@ -67,7 +75,7 @@ export function InquiryForm({ className }: { className?: string }) {
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    if (submitting) {
+    if (submitting || lockRef.current) {
       event.preventDefault();
       return;
     }
@@ -80,6 +88,7 @@ export function InquiryForm({ className }: { className?: string }) {
       return;
     }
 
+    lockRef.current = true;
     setLocked(true);
   }
 

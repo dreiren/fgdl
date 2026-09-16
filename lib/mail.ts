@@ -4,6 +4,10 @@ import type { InquiryFields } from "@/lib/validation";
 
 export const inquiryRecipient = firm.email;
 
+export function getInquiryRecipient() {
+  return process.env.INQUIRY_TO_EMAIL?.trim() || inquiryRecipient;
+}
+
 function inquiryText(fields: InquiryFields) {
   return [
     "A new consultation inquiry was submitted on the FGDLaw website.",
@@ -75,7 +79,7 @@ async function sendWithResend(fields: InquiryFields, to: string) {
 }
 
 export async function sendInquiryEmail(fields: InquiryFields) {
-  const to = process.env.INQUIRY_TO_EMAIL?.trim() || inquiryRecipient;
+  const to = getInquiryRecipient();
 
   if (process.env.INQUIRY_MAIL_DRIVER === "log") {
     console.info("[fgdlaw] inquiry mail (log driver)", {

@@ -1,7 +1,11 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { sendInquiryEmail, inquiryRecipient } from "@/lib/mail";
+import {
+  sendInquiryEmail,
+  inquiryRecipient,
+  getInquiryRecipient,
+} from "@/lib/mail";
 import {
   normalizeField,
   validateInquiry,
@@ -63,8 +67,9 @@ export async function submitInquiry(
     path: "/",
   });
 
+  const recipient = getInquiryRecipient();
   console.info("[fgdlaw] consultation inquiry emailed", {
-    to: inquiryRecipient,
+    to: recipient,
     email: fields.email,
     messageLength: fields.message.length,
   });
@@ -72,6 +77,6 @@ export async function submitInquiry(
   return {
     status: "success",
     message:
-      `Thank you. Your inquiry has been sent to ${inquiryRecipient}. Our Manila office will follow up using the email you provided. You may also reach us at (632) 727-5011-2.`,
+      `Thank you. Your inquiry has been sent to ${recipient}. Our Manila office will follow up using the email you provided. You may also reach us at (632) 727-5011-2.`,
   };
 }
