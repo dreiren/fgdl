@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SiteImage } from "@/components/site-image";
 import { cn } from "@/lib/cn";
 
 export function AttorneyPhoto({
@@ -18,14 +18,13 @@ export function AttorneyPhoto({
 }) {
   return (
     <div className={cn("relative overflow-hidden bg-[#17345a]", className)}>
-      <Image
+      <SiteImage
         src={src}
         alt={name}
         fill
         className={cn("object-cover object-[center_18%]", imageClassName)}
         sizes={sizes}
         quality={90}
-        unoptimized
         priority={priority}
       />
     </div>

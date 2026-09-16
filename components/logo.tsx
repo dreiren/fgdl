@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SiteImage } from "@/components/site-image";
 import { cn } from "@/lib/cn";
 
 export function Logo({
@@ -12,13 +12,12 @@ export function Logo({
 }) {
   return (
     <span className={cn("inline-flex items-center gap-3", className)}>
-      <Image
+      <SiteImage
         src="/fgdlaw-crest.png"
         alt=""
         width={479}
         height={552}
         priority
-        unoptimized
         className={cn("h-14 w-auto", markClassName)}
       />
       {showWordmark ? (
