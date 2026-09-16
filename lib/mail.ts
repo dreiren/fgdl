@@ -1,3 +1,4 @@
+import nodemailer from "nodemailer";
 import { firm } from "@/lib/site";
 import type { InquiryFields } from "@/lib/validation";
 
@@ -13,6 +14,31 @@ function inquiryText(fields: InquiryFields) {
     "Message:",
     fields.message,
   ].join("\n");
+}
+
+async function sendWithSmtp(fields: InquiryFields, to: string) {
+  const host = process.env.SMTP_HOST?.trim();
+  const user = process.env.SMTP_USER?.trim();
+  const pass = process.env.SMTP_PASS;
+  if (!host || !user || !pass) return false;
+
+  const port = Number(process.env.SMTP_PORT ?? 587);
+  const transporter = nodemailer.createTransport({
+    host,
+    port: Number.isFinite(port) ? port : 587,
+    secure: port === 465,
+    auth: { user, pass },
+  });
+
+  await transporter.sendMail({
+    from: process.env.INQUIRY_FROM_EMAIL?.trim() || `"FGDLaw Website" <${user}>`,
+    to,
+    replyTo: fields.email,
+    subject: `New consultation inquiry from ${fields.name}`,
+    text: inquiryText(fields),
+  });
+
+  return true;
 }
 
 async function sendWithResend(fields: InquiryFields, to: string) {
@@ -48,42 +74,25 @@ async function sendWithResend(fields: InquiryFields, to: string) {
   return true;
 }
 
-async function sendWithFormSubmit(fields: InquiryFields, to: string) {
-  const response = await fetch(
-    `https://formsubmit.co/ajax/${encodeURIComponent(to)}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        name: fields.name,
-        email: fields.email,
-        message: fields.message,
-        _subject: `New consultation inquiry from ${fields.name}`,
-        _template: "box",
-        _captcha: "false",
-        _replyto: fields.email,
-      }),
-      signal: AbortSignal.timeout(15000),
-    },
-  );
-
-  if (!response.ok) {
-    const detail = await response.text().catch(() => "");
-    console.error("[fgdlaw] FormSubmit delivery failed", response.status, detail);
-    return false;
-  }
-
-  return true;
-}
-
 export async function sendInquiryEmail(fields: InquiryFields) {
   const to = process.env.INQUIRY_TO_EMAIL?.trim() || inquiryRecipient;
 
+  if (process.env.INQUIRY_MAIL_DRIVER === "log") {
+    console.info("[fgdlaw] inquiry mail (log driver)", {
+      to,
+      email: fields.email,
+      messageLength: fields.message.length,
+    });
+    return true;
+  }
+
+  try {
+    if (await sendWithSmtp(fields, to)) return true;
+  } catch (error) {
+    console.error("[fgdlaw] SMTP delivery failed", error);
+  }
+
   if (await sendWithResend(fields, to)) return true;
-  if (await sendWithFormSubmit(fields, to)) return true;
 
   return false;
 }
