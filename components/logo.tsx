@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cn } from "@/lib/cn";
 
 export function Logo({
@@ -11,15 +12,15 @@ export function Logo({
 }) {
   return (
     <span className={cn("inline-flex items-center gap-3", className)}>
-      <span
-        className={cn(
-          "grid h-11 w-11 place-items-center rounded-lg bg-navy text-[15px] font-semibold tracking-wide text-gold",
-          markClassName,
-        )}
-        aria-hidden="true"
-      >
-        FG
-      </span>
+      <Image
+        src="/fgdlaw-crest.png"
+        alt=""
+        width={479}
+        height={552}
+        priority
+        unoptimized
+        className={cn("h-12 w-auto", markClassName)}
+      />
       {showWordmark ? (
         <span className="flex flex-col leading-none">
           <span className="font-serif text-[1.35rem] text-navy">
