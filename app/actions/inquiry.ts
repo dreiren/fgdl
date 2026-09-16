@@ -1,5 +1,7 @@
 "use server";
 
+import { cookies } from "next/headers";
+import { sendInquiryEmail, inquiryRecipient } from "@/lib/mail";
 import {
   normalizeField,
   validateInquiry,
@@ -11,6 +13,9 @@ export type InquiryState = {
   message?: string;
   fieldErrors?: InquiryFieldErrors;
 };
+
+const SENT_COOKIE = "fgdlaw_inquiry_sent";
+const RESUBMIT_WINDOW_SECONDS = 15 * 60;
 
 export async function submitInquiry(
   _prev: InquiryState,
@@ -31,8 +36,35 @@ export async function submitInquiry(
     };
   }
 
-  console.info("[fgdlaw] consultation inquiry", {
-    name: fields.name,
+  const jar = await cookies();
+  const lastSent = Number(jar.get(SENT_COOKIE)?.value ?? "");
+  if (Number.isFinite(lastSent) && Date.now() - lastSent < RESUBMIT_WINDOW_SECONDS * 1000) {
+    return {
+      status: "error",
+      message:
+        "Your inquiry was already sent. Please wait a few minutes before sending another message.",
+    };
+  }
+
+  const delivered = await sendInquiryEmail(fields);
+  if (!delivered) {
+    return {
+      status: "error",
+      message:
+        `We could not send your inquiry just now. Please email ${inquiryRecipient} directly or try again in a moment.`,
+    };
+  }
+
+  jar.set(SENT_COOKIE, String(Date.now()), {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    maxAge: RESUBMIT_WINDOW_SECONDS,
+    path: "/",
+  });
+
+  console.info("[fgdlaw] consultation inquiry emailed", {
+    to: inquiryRecipient,
     email: fields.email,
     messageLength: fields.message.length,
   });
@@ -40,6 +72,6 @@ export async function submitInquiry(
   return {
     status: "success",
     message:
-      "Thank you. Your inquiry has been recorded. Our Manila office will follow up using the email you provided. You may also reach us at info@fgdlaw.net or (632) 727-5011-2.",
+      `Thank you. Your inquiry has been sent to ${inquiryRecipient}. Our Manila office will follow up using the email you provided. You may also reach us at (632) 727-5011-2.`,
   };
 }

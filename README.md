@@ -27,7 +27,7 @@ Open [http://localhost:3000](http://localhost:3000).
 - `/contact` — office details and inquiry form
 - `/careers` — how to send an application
 
-The inquiry form validates submissions on the client and server, including checks that reject HTML and script injection. Wire it to mail delivery before production use.
+The inquiry form validates submissions on the client and server, including checks that reject HTML and script injection. Successful inquiries are emailed to **info@fgdlaw.net**. Set `RESEND_API_KEY` (and optionally `INQUIRY_FROM_EMAIL`) for transactional delivery; otherwise the form uses FormSubmit. The submit button locks after a click, and a second send is blocked for 15 minutes.
 
 ## Scripts
 
