@@ -19,7 +19,7 @@ export function Logo({
         height={552}
         priority
         unoptimized
-        className={cn("h-12 w-auto", markClassName)}
+        className={cn("h-14 w-auto", markClassName)}
       />
       {showWordmark ? (
         <span className="flex flex-col leading-none">
