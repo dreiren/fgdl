@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import { SiteImage } from "@/components/site-image";
 import { notFound } from "next/navigation";
 import { CtaBanner } from "@/components/cta-banner";
 import { PageHero } from "@/components/page-hero";
@@ -39,15 +39,13 @@ export default async function PracticeAreaPage({
         <Container className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
             <div className="relative mb-8 aspect-[4/3] max-w-md overflow-hidden rounded-[4px] shadow-[0_8px_24px_rgba(8,21,38,0.08)]">
-              <Image
+              <SiteImage
                 src={area.image}
                 alt=""
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 448px"
                 quality={90}
-                priority
-                unoptimized
               />
             </div>
             {area.topics.length > 0 ? (

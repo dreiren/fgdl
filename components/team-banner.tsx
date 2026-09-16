@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { SiteImage } from "@/components/site-image";
 
 export function TeamBanner() {
   const layerRef = useRef<HTMLDivElement>(null);
@@ -58,7 +58,7 @@ export function TeamBanner() {
           className="absolute inset-x-0 top-0 h-[calc(100%+16rem)] will-change-transform"
           style={{ top: 0 }}
         >
-          <Image
+          <SiteImage
             src="/fgdlaw-team.jpg"
             alt="FGDLaw counsel in the Manila office"
             fill

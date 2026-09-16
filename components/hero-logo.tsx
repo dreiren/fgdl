@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { SiteImage } from "@/components/site-image";
 import { firm } from "@/lib/site";
 
 export function HeroLogo() {
@@ -62,7 +62,7 @@ export function HeroLogo() {
           ref={layerRef}
           className="hero-parallax-layer absolute inset-x-0 -top-[8%] h-[116%] will-change-transform"
         >
-          <Image
+          <SiteImage
             src="/fgdlaw-logo.png"
             alt=""
             fill

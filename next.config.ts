@@ -42,6 +42,7 @@ const nextConfig: NextConfig = staticExport
       images: { unoptimized: true },
     }
   : {
+      images: { unoptimized: true },
       async redirects() {
         return redirects;
       },

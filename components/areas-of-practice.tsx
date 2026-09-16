@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { SiteImage } from "@/components/site-image";
 import { cn } from "@/lib/cn";
 import { practiceAreas, practiceSection } from "@/lib/site";
 
@@ -52,14 +52,13 @@ export function AreasOfPractice({
                 className="-m-1.5 flex items-start gap-4 rounded-sm p-1.5 transition-colors hover:bg-[#fafafa] sm:gap-5 lg:gap-6"
               >
                 <div className="relative aspect-[11/10] w-[8.35rem] shrink-0 overflow-hidden rounded-[4px] shadow-[0_8px_20px_rgba(8,21,38,0.08)] sm:w-[11rem] lg:w-[13.25rem] xl:w-[14.75rem]">
-                  <Image
+                  <SiteImage
                     src={area.image}
                     alt=""
                     fill
                     className="object-cover"
                     sizes="(max-width: 640px) 134px, (max-width: 1024px) 176px, 236px"
                     quality={90}
-                    unoptimized
                   />
                 </div>
                 <div className="min-w-0 flex-1 pt-0.5">

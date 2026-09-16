@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { SiteImage } from "@/components/site-image";
 import { cn } from "@/lib/cn";
 import { lawyersRoster } from "@/lib/site";
 
@@ -53,14 +53,13 @@ export function LawyersRoster() {
                 className="flex h-full flex-col transition-colors hover:bg-[#fafafa]"
               >
                 <div className="relative aspect-[4/5] overflow-hidden bg-[#17345a]">
-                  <Image
+                  <SiteImage
                     src={lawyer.image}
                     alt={lawyer.name}
                     fill
                     className="object-cover object-[center_18%]"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     quality={90}
-                    unoptimized
                   />
                 </div>
                 <div className="flex flex-1 flex-col px-4 pb-5 pt-5">
