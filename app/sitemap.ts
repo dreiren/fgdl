@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { attorneys, practiceAreas } from "@/lib/site";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://fgdlaw.net";
   const staticRoutes = [
