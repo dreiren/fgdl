@@ -1,8 +1,17 @@
 "use client";
 
-import { useActionState, useState, type FormEvent } from "react";
-import { submitInquiry, type InquiryState } from "@/app/actions/inquiry";
+import { useRef, useState, type FormEvent } from "react";
 import { cn } from "@/lib/cn";
+import {
+  INQUIRY_ENDPOINT,
+  inquiryDeliveryErrorMessage,
+  inquiryDuplicateMessage,
+  inquirySuccessMessage,
+  markInquirySent,
+  wasInquirySentRecently,
+  type InquiryResponse,
+  type InquiryState,
+} from "@/lib/inquiry";
 import {
   FIELD_LIMITS,
   validateInquiry,
@@ -25,16 +34,16 @@ const fieldClass = (invalid: boolean) =>
   );
 
 export function InquiryForm({ className }: { className?: string }) {
-  const [state, formAction, pending] = useActionState(
-    submitInquiry,
-    initialState,
-  );
+  const [locked, setLocked] = useState(false);
+  const lockRef = useRef(false);
+  const [state, setState] = useState<InquiryState>(initialState);
   const [values, setValues] = useState<InquiryFields>(emptyFields);
   const [clientErrors, setClientErrors] = useState<InquiryFieldErrors>({});
   const [edited, setEdited] = useState<Partial<Record<keyof InquiryFields, boolean>>>(
     {},
   );
 
+  const submitting = locked;
   const mergedErrors: InquiryFieldErrors = {
     ...(state.status === "error" ? state.fieldErrors : {}),
     ...clientErrors,
@@ -46,6 +55,7 @@ export function InquiryForm({ className }: { className?: string }) {
   };
 
   function updateField(field: keyof InquiryFields, value: string) {
+    if (submitting) return;
     setValues((current) => ({ ...current, [field]: value }));
     setEdited((current) => ({ ...current, [field]: true }));
     setClientErrors((current) => {
@@ -56,12 +66,69 @@ export function InquiryForm({ className }: { className?: string }) {
     });
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function fail(next: InquiryState) {
+    lockRef.current = false;
+    setLocked(false);
+    setState(next);
+  }
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (submitting || lockRef.current) return;
+
     const errors = validateInquiry(values);
     setEdited({});
     setClientErrors(errors);
     if (Object.keys(errors).length > 0) {
-      event.preventDefault();
+      setState({
+        status: "error",
+        message: "Please correct the highlighted fields.",
+        fieldErrors: errors,
+      });
+      return;
+    }
+
+    if (wasInquirySentRecently()) {
+      setState({
+        status: "error",
+        message: inquiryDuplicateMessage,
+      });
+      return;
+    }
+
+    lockRef.current = true;
+    setLocked(true);
+    setState(initialState);
+
+    try {
+      const response = await fetch(INQUIRY_ENDPOINT, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+      const payload = (await response.json().catch(() => null)) as InquiryResponse | null;
+      if (!payload?.ok) {
+        fail({
+          status: "error",
+          message: payload?.message || inquiryDeliveryErrorMessage,
+          fieldErrors: payload?.fieldErrors,
+        });
+        return;
+      }
+
+      markInquirySent();
+      setState({
+        status: "success",
+        message: payload.message || inquirySuccessMessage,
+      });
+    } catch {
+      fail({
+        status: "error",
+        message: inquiryDeliveryErrorMessage,
+      });
     }
   }
 
@@ -82,10 +149,10 @@ export function InquiryForm({ className }: { className?: string }) {
 
   return (
     <form
-      action={formAction}
       noValidate
       onSubmit={handleSubmit}
       onReset={(event) => event.preventDefault()}
+      aria-busy={submitting}
       className={cn(
         "rounded-2xl border border-navy/8 bg-white p-6 shadow-[0_12px_40px_rgba(8,21,38,0.08)] sm:p-8",
         className,
@@ -101,6 +168,7 @@ export function InquiryForm({ className }: { className?: string }) {
           maxLength={FIELD_LIMITS.name.max}
           placeholder="Juan Dela Cruz"
           value={values.name}
+          readOnly={submitting}
           onChange={(event) => updateField("name", event.target.value)}
           aria-invalid={Boolean(fieldErrors.name)}
           aria-describedby={fieldErrors.name ? "inquiry-name-error" : undefined}
@@ -123,6 +191,7 @@ export function InquiryForm({ className }: { className?: string }) {
           maxLength={FIELD_LIMITS.email.max}
           placeholder="juan@email.com"
           value={values.email}
+          readOnly={submitting}
           onChange={(event) => updateField("email", event.target.value)}
           aria-invalid={Boolean(fieldErrors.email)}
           aria-describedby={fieldErrors.email ? "inquiry-email-error" : undefined}
@@ -143,6 +212,7 @@ export function InquiryForm({ className }: { className?: string }) {
           maxLength={FIELD_LIMITS.message.max}
           placeholder="Tell us about your legal concern..."
           value={values.message}
+          readOnly={submitting}
           onChange={(event) => updateField("message", event.target.value)}
           aria-invalid={Boolean(fieldErrors.message)}
           aria-describedby={
@@ -170,10 +240,11 @@ export function InquiryForm({ className }: { className?: string }) {
       ) : null}
       <button
         type="submit"
-        disabled={pending}
-        className="mt-6 w-full rounded-md bg-gold py-3 text-sm font-semibold text-navy-deep transition-colors hover:bg-gold-soft disabled:opacity-70"
+        disabled={submitting}
+        aria-disabled={submitting}
+        className="mt-6 w-full rounded-md bg-gold py-3 text-sm font-semibold text-navy-deep transition-colors hover:bg-gold-soft disabled:pointer-events-none disabled:opacity-70"
       >
-        {pending ? "Sending…" : "Submit Inquiry"}
+        {submitting ? "Sending…" : "Submit Inquiry"}
       </button>
     </form>
   );
