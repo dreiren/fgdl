@@ -42,8 +42,7 @@ export default function AboutPage() {
               the operating questions companies actually face.
             </p>
             <p>
-              FGDLaw remains an Integrated Bar of the Philippines member firm,
-              led by a doctorate holder in Peace and Security Administration,
+              Led by a doctorate holder in Peace and Security Administration,
               with a client-first commitment that has not changed since the
               first day of practice.
             </p>
