@@ -1,14 +1,17 @@
 "use client";
 
-import {
-  useActionState,
-  useCallback,
-  useRef,
-  useState,
-  type FormEvent,
-} from "react";
-import { submitInquiry, type InquiryState } from "@/app/actions/inquiry";
+import { useRef, useState, type FormEvent } from "react";
 import { cn } from "@/lib/cn";
+import {
+  INQUIRY_ENDPOINT,
+  inquiryDeliveryErrorMessage,
+  inquiryDuplicateMessage,
+  inquirySuccessMessage,
+  markInquirySent,
+  wasInquirySentRecently,
+  type InquiryResponse,
+  type InquiryState,
+} from "@/lib/inquiry";
 import {
   FIELD_LIMITS,
   validateInquiry,
@@ -33,25 +36,14 @@ const fieldClass = (invalid: boolean) =>
 export function InquiryForm({ className }: { className?: string }) {
   const [locked, setLocked] = useState(false);
   const lockRef = useRef(false);
-  const submit = useCallback(
-    async (prev: InquiryState, formData: FormData) => {
-      const result = await submitInquiry(prev, formData);
-      if (result.status !== "success") {
-        lockRef.current = false;
-        setLocked(false);
-      }
-      return result;
-    },
-    [],
-  );
-  const [state, formAction, pending] = useActionState(submit, initialState);
+  const [state, setState] = useState<InquiryState>(initialState);
   const [values, setValues] = useState<InquiryFields>(emptyFields);
   const [clientErrors, setClientErrors] = useState<InquiryFieldErrors>({});
   const [edited, setEdited] = useState<Partial<Record<keyof InquiryFields, boolean>>>(
     {},
   );
 
-  const submitting = pending || locked;
+  const submitting = locked;
   const mergedErrors: InquiryFieldErrors = {
     ...(state.status === "error" ? state.fieldErrors : {}),
     ...clientErrors,
@@ -74,22 +66,70 @@ export function InquiryForm({ className }: { className?: string }) {
     });
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    if (submitting || lockRef.current) {
-      event.preventDefault();
-      return;
-    }
+  function fail(next: InquiryState) {
+    lockRef.current = false;
+    setLocked(false);
+    setState(next);
+  }
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (submitting || lockRef.current) return;
 
     const errors = validateInquiry(values);
     setEdited({});
     setClientErrors(errors);
     if (Object.keys(errors).length > 0) {
-      event.preventDefault();
+      setState({
+        status: "error",
+        message: "Please correct the highlighted fields.",
+        fieldErrors: errors,
+      });
+      return;
+    }
+
+    if (wasInquirySentRecently()) {
+      setState({
+        status: "error",
+        message: inquiryDuplicateMessage,
+      });
       return;
     }
 
     lockRef.current = true;
     setLocked(true);
+    setState(initialState);
+
+    try {
+      const response = await fetch(INQUIRY_ENDPOINT, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+      const payload = (await response.json().catch(() => null)) as InquiryResponse | null;
+      if (!payload?.ok) {
+        fail({
+          status: "error",
+          message: payload?.message || inquiryDeliveryErrorMessage,
+          fieldErrors: payload?.fieldErrors,
+        });
+        return;
+      }
+
+      markInquirySent();
+      setState({
+        status: "success",
+        message: payload.message || inquirySuccessMessage,
+      });
+    } catch {
+      fail({
+        status: "error",
+        message: inquiryDeliveryErrorMessage,
+      });
+    }
   }
 
   if (state.status === "success") {
@@ -109,7 +149,6 @@ export function InquiryForm({ className }: { className?: string }) {
 
   return (
     <form
-      action={formAction}
       noValidate
       onSubmit={handleSubmit}
       onReset={(event) => event.preventDefault()}

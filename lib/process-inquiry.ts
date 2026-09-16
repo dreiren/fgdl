@@ -1,35 +1,32 @@
-"use server";
-
 import { cookies } from "next/headers";
 import {
-  sendInquiryEmail,
-  inquiryRecipient,
-  getInquiryRecipient,
-} from "@/lib/mail";
+  inquiryDeliveryErrorMessage,
+  inquiryDuplicateMessage,
+  inquirySuccessMessage,
+  type InquiryState,
+} from "@/lib/inquiry";
+import { getInquiryRecipient, sendInquiryEmail } from "@/lib/mail";
 import {
   normalizeField,
   validateInquiry,
-  type InquiryFieldErrors,
+  type InquiryFields,
 } from "@/lib/validation";
-
-export type InquiryState = {
-  status: "idle" | "success" | "error";
-  message?: string;
-  fieldErrors?: InquiryFieldErrors;
-};
 
 const SENT_COOKIE = "fgdlaw_inquiry_sent";
 const RESUBMIT_WINDOW_SECONDS = 15 * 60;
 
-export async function submitInquiry(
-  _prev: InquiryState,
-  formData: FormData,
-): Promise<InquiryState> {
-  const fields = {
-    name: normalizeField(formData.get("name")),
-    email: normalizeField(formData.get("email")),
-    message: normalizeField(formData.get("message")),
+export function readInquiryFields(input: unknown): InquiryFields {
+  const source =
+    input && typeof input === "object" ? (input as Record<string, unknown>) : {};
+  return {
+    name: normalizeField(source.name),
+    email: normalizeField(source.email),
+    message: normalizeField(source.message),
   };
+}
+
+export async function processInquiry(input: unknown): Promise<InquiryState> {
+  const fields = readInquiryFields(input);
   const fieldErrors = validateInquiry(fields);
 
   if (Object.keys(fieldErrors).length > 0) {
@@ -45,8 +42,7 @@ export async function submitInquiry(
   if (Number.isFinite(lastSent) && Date.now() - lastSent < RESUBMIT_WINDOW_SECONDS * 1000) {
     return {
       status: "error",
-      message:
-        "Your inquiry was already sent. Please wait a few minutes before sending another message.",
+      message: inquiryDuplicateMessage,
     };
   }
 
@@ -54,8 +50,7 @@ export async function submitInquiry(
   if (!delivered) {
     return {
       status: "error",
-      message:
-        `We could not send your inquiry just now. Please email ${inquiryRecipient} directly or try again in a moment.`,
+      message: inquiryDeliveryErrorMessage,
     };
   }
 
@@ -67,16 +62,14 @@ export async function submitInquiry(
     path: "/",
   });
 
-  const recipient = getInquiryRecipient();
   console.info("[fgdlaw] consultation inquiry emailed", {
-    to: recipient,
+    to: getInquiryRecipient(),
     email: fields.email,
     messageLength: fields.message.length,
   });
 
   return {
     status: "success",
-    message:
-      `Thank you. Your inquiry has been sent to ${recipient}. Our Manila office will follow up using the email you provided. You may also reach us at (632) 727-5011-2.`,
+    message: inquirySuccessMessage,
   };
 }
