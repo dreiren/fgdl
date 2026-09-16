@@ -259,7 +259,7 @@ export const attorneys = [
   },
   {
     slug: "joan-don-a-napay",
-    name: "Atty. Joan Don A. Napay",
+    name: "Atty. Joan Don A. Napay, JD",
     role: "Affiliated Counsel",
     image: "/team/joan-don-a-napay.jpg",
     tagline: "Lawyer • Psychology Graduate • Special Proceedings Practitioner",
@@ -287,7 +287,7 @@ export const attorneys = [
   },
   {
     slug: "mary-rose-c-reyes",
-    name: "Atty. Mary Rose C. Reyes",
+    name: "Atty. Mary Rose C. Reyes, JD",
     role: "Associate Counsel",
     image: "/team/mary-rose-c-reyes.jpg",
     tagline: "Lawyer • Educator • Litigation and Data Privacy Practitioner",
@@ -336,8 +336,9 @@ export const supportManager = {
 } as const;
 
 export const supportAssociates = [
-  { name: "Hannah M. Sarmiento", image: "/team/hannah-m-sarmiento.jpg" },
-  { name: "Natalie A. Troncales", image: "/team/natalie-a-troncales.jpg" },
+  
+  { name: "Hannah M. Sarmiento", image: "/team/natalie-a-troncales.jpg" },
+  { name: "Natalie A. Troncales", image: "/team/hannah-m-sarmiento.jpg" },
 ] as const;
 
 export const supportTeam = {
