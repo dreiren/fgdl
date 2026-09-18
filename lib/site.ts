@@ -337,8 +337,9 @@ export const supportManager = {
 
 export const supportAssociates = [
   
-  { name: "Hannah M. Sarmiento", image: "/team/natalie-a-troncales.jpg" },
-  { name: "Natalie A. Troncales", image: "/team/hannah-m-sarmiento.jpg" },
+  { name: "Hannah M. Sarmiento", image: "/team/hannah-m-sarmiento.jpg" },
+  { name: "Natalie A. Troncales", image: "/team/natalie-a-troncales.jpg" },
+  { name: "Merickall Maetrix P. Javillo", image: "/team/merickall-maetrix-p-javillo.jpg" },
 ] as const;
 
 export const supportTeam = {
