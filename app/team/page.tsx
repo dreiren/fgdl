@@ -74,7 +74,7 @@ export default function TeamPage() {
             </div>
           </article>
 
-          <div className="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
+          <div className="mx-auto mt-8 grid max-w-5xl gap-4 sm:grid-cols-3">
             {supportAssociates.map((person) => (
               <article
                 key={person.name}
@@ -83,11 +83,11 @@ export default function TeamPage() {
                 <AttorneyPhoto
                   src={person.image}
                   name={person.name}
-                  sizes="(max-width: 640px) 100vw, 24rem"
+                  sizes="(max-width: 640px) 100vw, 33vw"
                   className="aspect-[4/5]"
                 />
                 <div className="border-t-[3px] border-gold bg-cream px-5 py-7 text-center">
-                  <h3 className="font-serif text-xl tracking-[0.04em] text-navy uppercase md:text-[1.35rem]">
+                  <h3 className="font-serif text-[1.15rem] leading-snug tracking-[0.04em] text-navy uppercase md:text-[1.25rem]">
                     {person.name}
                   </h3>
                 </div>
