@@ -1,3 +1,5 @@
+export const googleAnalyticsId = "G-0T4B45V4YQ";
+
 export const firm = {
   name: "FGDLaw",
   legalName: "The Law Firm of Frederick G. Dedace",
